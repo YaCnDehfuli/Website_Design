@@ -39,6 +39,8 @@ html {
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
   margin: 0;
   background-color: var(--color-bg);
@@ -110,7 +112,26 @@ p {
   outline-offset: 0.25rem;
 }
 
+.skip-link {
+  position: fixed;
+  z-index: 100;
+  top: var(--space-3);
+  left: var(--space-3);
+  padding: var(--space-2) var(--space-4);
+  transform: translateY(-200%);
+  border: 1px solid var(--color-lime);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-deep);
+  color: var(--color-lime);
+  font-family: var(--font-mono);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
 main {
+  flex: 1;
   width: min(calc(100% - 2rem), var(--page-width));
   margin-inline: auto;
   padding-block: var(--space-8);
