@@ -1,3 +1,4 @@
+import { profile } from "@/content/profile";
 import styles from "./site-footer.module.css";
 
 export function SiteFooter() {
@@ -5,7 +6,7 @@ export function SiteFooter() {
     <footer className={styles.footer}>
       <div className={`${styles.inner} shell`}>
         <p>
-          <span aria-hidden="true">◆</span> Yasin Dehfouli
+          <span aria-hidden="true">◆</span> {profile.name}
         </p>
         <p className={styles.command}>
           <span>$</span> build --learn --share

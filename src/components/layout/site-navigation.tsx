@@ -3,15 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { primaryNavigation } from "@/content/navigation";
 import styles from "./site-navigation.module.css";
-
-const navigation = [
-  { href: "/about", label: "about", index: "01" },
-  { href: "/projects", label: "projects", index: "02" },
-  { href: "/publications", label: "writing", index: "03" },
-  { href: "/engineering", label: "lab", index: "04" },
-  { href: "/contact", label: "contact", index: "05" },
-] as const;
 
 export function SiteNavigation() {
   const pathname = usePathname();
@@ -29,7 +22,7 @@ export function SiteNavigation() {
         <span aria-hidden="true">{isOpen ? "[×]" : "[+]"}</span> menu
       </button>
       <ul id="primary-navigation" className={styles.list} data-open={isOpen}>
-        {navigation.map((item) => {
+        {primaryNavigation.map((item) => {
           const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
 
           return (

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { profile } from "@/content/profile";
 import { SiteNavigation } from "./site-navigation";
 import styles from "./site-header.module.css";
 
@@ -14,9 +15,10 @@ export function SiteHeader() {
         </div>
       </div>
       <div className={`${styles.inner} shell`}>
-        <Link className={styles.brand} href="/" aria-label="Yasin Dehfouli, home">
+        <Link className={styles.brand} href="/" aria-label={`${profile.name}, home`}>
           <span className={styles.mark} aria-hidden="true">
-            YD<span>_</span>
+            {profile.shortName}
+            <span>_</span>
           </span>
           <span className={styles.path}>~/yasin.dev</span>
         </Link>
