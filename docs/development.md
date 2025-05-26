@@ -12,8 +12,16 @@ corepack pnpm dev
 
 The application is available at [http://localhost:3000](http://localhost:3000).
 
-PostgreSQL and database commands will be documented when the database milestone is introduced. Until
-then, the repository must build without database configuration.
+Start the local PostgreSQL service before working on database-backed features:
+
+```bash
+docker compose up -d postgres
+docker compose ps
+```
+
+The service uses a named volume, so data survives container restarts. Run `docker compose down` to
+stop it without deleting data. Run `docker compose down --volumes` only when intentionally resetting
+the local database.
 
 ## Available commands
 
