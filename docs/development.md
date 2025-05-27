@@ -23,6 +23,10 @@ The service uses a named volume, so data survives container restarts. Run `docke
 stop it without deleting data. Run `docker compose down --volumes` only when intentionally resetting
 the local database.
 
+Copy `.env.example` to `.env.local` before running database-backed commands. Runtime queries use
+`DATABASE_URL`; Drizzle Kit uses `MIGRATION_DATABASE_URL` so deployments can keep pooled and direct
+credentials separate.
+
 ## Available commands
 
 | Command                      | Purpose                                                   |
@@ -34,6 +38,9 @@ the local database.
 | `corepack pnpm typecheck`    | Run TypeScript without emitting files                     |
 | `corepack pnpm format`       | Apply Prettier formatting                                 |
 | `corepack pnpm format:check` | Verify formatting without rewriting files                 |
+| `corepack pnpm db:generate`  | Generate a reviewed SQL migration from the schema         |
+| `corepack pnpm db:migrate`   | Apply committed migrations with the direct database URL   |
+| `corepack pnpm db:studio`    | Inspect local data through Drizzle Studio                 |
 
 ## Quality gate
 
