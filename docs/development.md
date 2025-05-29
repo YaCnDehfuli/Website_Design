@@ -40,6 +40,7 @@ credentials separate.
 | `corepack pnpm format:check` | Verify formatting without rewriting files                 |
 | `corepack pnpm db:generate`  | Generate a reviewed SQL migration from the schema         |
 | `corepack pnpm db:migrate`   | Apply committed migrations with the direct database URL   |
+| `corepack pnpm db:seed`      | Upsert deterministic local portfolio examples             |
 | `corepack pnpm db:studio`    | Inspect local data through Drizzle Studio                 |
 
 ## Quality gate
