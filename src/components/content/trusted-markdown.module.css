@@ -1,0 +1,78 @@
+.markdown {
+  color: var(--color-muted);
+  font-size: 1.02rem;
+}
+
+.markdown > * > :first-child {
+  margin-top: 0;
+}
+
+.markdown h2,
+.markdown h3 {
+  margin-top: var(--space-7);
+  margin-bottom: var(--space-4);
+  color: var(--color-text);
+}
+
+.markdown h2 {
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-line);
+  font-size: clamp(1.45rem, 3vw, 2rem);
+}
+
+.markdown h2::before {
+  margin-right: var(--space-2);
+  color: var(--color-cyan);
+  content: "#";
+  font-family: var(--font-mono);
+}
+
+.markdown h3 {
+  font-size: 1.2rem;
+}
+
+.markdown p,
+.markdown ul,
+.markdown ol,
+.markdown blockquote,
+.markdown pre {
+  margin-block: var(--space-4);
+}
+
+.markdown a {
+  color: var(--color-cyan);
+  text-underline-offset: 0.2em;
+}
+
+.markdown li + li {
+  margin-top: var(--space-2);
+}
+
+.markdown blockquote {
+  padding: var(--space-3) var(--space-5);
+  border-left: 2px solid var(--color-violet);
+  color: var(--color-text);
+}
+
+.markdown code {
+  padding: 0.15rem 0.3rem;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-deep);
+  color: var(--color-lime);
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+}
+
+.markdown pre {
+  overflow-x: auto;
+  padding: var(--space-5);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-deep);
+}
+
+.markdown pre code {
+  padding: 0;
+  border: 0;
+}

@@ -1,4 +1,5 @@
 import "server-only";
+import { cache } from "react";
 import { and, asc, desc, eq } from "drizzle-orm";
 import { db } from "@/db/client";
 import { projectTags, projects, tags } from "@/db/schema";
@@ -13,6 +14,8 @@ export type ProjectSummary = Readonly<{
   publishedAt: Date | null;
   tags: readonly { name: string; slug: string }[];
 }>;
+
+export type ProjectDetail = ProjectSummary & Readonly<{ body: string }>;
 
 type ProjectRow = Omit<ProjectSummary, "tags"> & {
   tagName: string | null;
@@ -54,6 +57,36 @@ export async function getFeaturedProjects(limit = 3): Promise<readonly ProjectSu
 
   return groupProjectRows(rows).slice(0, limit);
 }
+
+export const getPublishedProjectBySlug = cache(
+  async (slug: string): Promise<ProjectDetail | null> => {
+    const [project] = await db
+      .select({
+        id: projects.id,
+        slug: projects.slug,
+        title: projects.title,
+        summary: projects.summary,
+        body: projects.body,
+        repositoryUrl: projects.repositoryUrl,
+        liveUrl: projects.liveUrl,
+        publishedAt: projects.publishedAt,
+      })
+      .from(projects)
+      .where(and(eq(projects.slug, slug), eq(projects.published, true)))
+      .limit(1);
+
+    if (!project) return null;
+
+    const projectTagRows = await db
+      .select({ name: tags.name, slug: tags.slug })
+      .from(projectTags)
+      .innerJoin(tags, eq(projectTags.tagId, tags.id))
+      .where(eq(projectTags.projectId, project.id))
+      .orderBy(asc(tags.name));
+
+    return { ...project, tags: projectTagRows };
+  },
+);
 
 function groupProjectRows(rows: readonly ProjectRow[]) {
   const grouped = new Map<

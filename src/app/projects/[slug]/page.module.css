@@ -1,0 +1,155 @@
+.page {
+  display: grid;
+  gap: var(--space-7);
+}
+
+.back {
+  justify-self: start;
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-decoration: none;
+}
+
+.back:hover {
+  color: var(--color-cyan);
+}
+
+.header {
+  display: grid;
+  justify-items: start;
+  max-width: 62rem;
+  gap: var(--space-5);
+}
+
+.header h1 {
+  font-size: clamp(2.6rem, 7vw, 5.5rem);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+  gap: var(--space-2);
+  list-style: none;
+}
+
+.tags li {
+  padding: 0.3rem 0.55rem;
+  border: 1px solid var(--color-line);
+  border-radius: 100vw;
+  color: var(--color-cyan);
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+}
+
+.caseStudy {
+  display: grid;
+  align-items: start;
+  gap: var(--space-5);
+  grid-template-columns: minmax(0, 1fr) minmax(14rem, 0.34fr);
+}
+
+.content,
+.sidebar {
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: rgb(3 7 12 / 72%);
+}
+
+.content {
+  overflow: hidden;
+}
+
+.fileBar,
+.sidebarTitle {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-line);
+  color: var(--color-cyan);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+}
+
+.fileBar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fileBar span:last-child {
+  color: var(--color-muted);
+}
+
+.content > div:last-child {
+  padding: clamp(1.5rem, 5vw, 3.5rem);
+}
+
+.sidebar {
+  position: sticky;
+  top: 8rem;
+  overflow: hidden;
+}
+
+.sidebar dl {
+  margin: 0;
+}
+
+.sidebar dl div {
+  display: grid;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-line);
+  gap: var(--space-2);
+  grid-template-columns: 4rem 1fr;
+}
+
+.sidebar dt,
+.sidebar dd {
+  font-family: var(--font-mono);
+  font-size: 0.67rem;
+}
+
+.sidebar dt {
+  color: var(--color-muted);
+}
+
+.sidebar dd {
+  margin: 0;
+  color: var(--color-lime);
+}
+
+.externalLinks {
+  display: grid;
+  padding: var(--space-4);
+  gap: var(--space-2);
+}
+
+.externalLinks a {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--space-3);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  color: var(--color-cyan);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-decoration: none;
+}
+
+.externalLinks a:hover {
+  border-color: var(--color-cyan);
+}
+
+@media (max-width: 48rem) {
+  .caseStudy {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+  }
+
+  .fileBar span:last-child {
+    display: none;
+  }
+}
