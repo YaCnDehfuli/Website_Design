@@ -1,0 +1,128 @@
+.list {
+  padding: 0;
+  border-top: 1px solid var(--color-line);
+  margin: 0;
+  list-style: none;
+}
+
+.list > li {
+  border-bottom: 1px solid var(--color-line);
+}
+
+.list article {
+  display: grid;
+  align-items: stretch;
+  transition: background 160ms ease;
+  grid-template-columns: 5rem minmax(0, 1fr) 8rem;
+}
+
+.list article:hover {
+  background: rgb(99 242 208 / 4%);
+}
+
+.index {
+  display: grid;
+  position: relative;
+  place-items: center;
+  border-right: 1px solid var(--color-line);
+  color: var(--color-cyan);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+}
+
+.index i {
+  position: absolute;
+  bottom: -0.25rem;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--color-lime);
+  box-shadow: 0 0 0.8rem var(--color-lime);
+}
+
+.body {
+  display: grid;
+  padding: var(--space-6);
+  gap: var(--space-3);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  gap: var(--space-3);
+}
+
+.meta span {
+  color: var(--color-violet);
+  text-transform: uppercase;
+}
+
+.body p {
+  max-width: 48rem;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+.list article > a {
+  display: grid;
+  place-items: center;
+  border-left: 1px solid var(--color-line);
+  color: var(--color-lime);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-decoration: none;
+}
+
+.list article > a span:last-child {
+  font-size: 1.25rem;
+}
+
+.list article > a:hover {
+  background: rgb(200 255 98 / 7%);
+}
+
+.empty {
+  display: flex;
+  min-height: 12rem;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+  border: 1px dashed var(--color-line);
+  border-radius: var(--radius-md);
+  gap: var(--space-3);
+  color: var(--color-muted);
+}
+
+.empty > span {
+  color: var(--color-amber);
+  font-family: var(--font-mono);
+}
+
+.empty small {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+}
+
+@media (max-width: 40rem) {
+  .list article {
+    grid-template-columns: 3rem minmax(0, 1fr);
+  }
+
+  .list article > a {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--space-3) var(--space-5);
+    border-top: 1px solid var(--color-line);
+    border-left: 0;
+    grid-column: 1 / -1;
+  }
+
+  .body {
+    padding: var(--space-5);
+  }
+}
