@@ -1,0 +1,147 @@
+.page {
+  display: grid;
+  max-width: 64rem;
+  margin-inline: auto;
+  gap: var(--space-7);
+}
+
+.back {
+  justify-self: start;
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-decoration: none;
+}
+
+.back:hover {
+  color: var(--color-cyan);
+}
+
+.header {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-5);
+}
+
+.header h1 {
+  max-width: 15ch;
+  font-size: clamp(2.6rem, 7vw, 5.3rem);
+}
+
+.recordType {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-line);
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+}
+
+.recordType span:last-child {
+  color: var(--color-lime);
+}
+
+.metadata {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: var(--space-3) 0 0;
+  gap: var(--space-6);
+}
+
+.metadata div {
+  display: grid;
+}
+
+.metadata dt {
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+}
+
+.metadata dd {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.document {
+  overflow: hidden;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: rgb(3 7 12 / 74%);
+  box-shadow: 0 2rem 6rem rgb(0 0 0 / 22%);
+}
+
+.fileBar,
+.external {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+}
+
+.fileBar {
+  border-bottom: 1px solid var(--color-line);
+}
+
+.fileBar span:first-child,
+.external > span {
+  color: var(--color-violet);
+}
+
+.documentBody {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr);
+}
+
+.documentBody > aside {
+  display: grid;
+  align-content: start;
+  padding-top: clamp(2rem, 5vw, 3.5rem);
+  border-right: 1px solid var(--color-line);
+  color: rgb(145 165 163 / 40%);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  gap: var(--space-6);
+  text-align: center;
+}
+
+.documentBody > div {
+  padding: clamp(2rem, 6vw, 4.5rem);
+}
+
+.external {
+  align-items: center;
+  border-top: 1px solid var(--color-line);
+}
+
+.external a {
+  color: var(--color-cyan);
+  text-decoration: none;
+}
+
+@media (max-width: 36rem) {
+  .documentBody {
+    grid-template-columns: 1fr;
+  }
+
+  .documentBody > aside {
+    display: none;
+  }
+
+  .fileBar span:last-child {
+    display: none;
+  }
+
+  .external {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+}

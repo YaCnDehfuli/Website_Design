@@ -1,5 +1,6 @@
 import "server-only";
-import { desc, eq } from "drizzle-orm";
+import { cache } from "react";
+import { and, desc, eq } from "drizzle-orm";
 import { db } from "@/db/client";
 import { publications } from "@/db/schema";
 
@@ -12,6 +13,8 @@ export type PublicationSummary = Readonly<{
   externalUrl: string | null;
   publishedAt: Date | null;
 }>;
+
+export type PublicationDetail = PublicationSummary & Readonly<{ body: string }>;
 
 const publicPublicationColumns = {
   id: publications.id,
@@ -39,3 +42,15 @@ export async function getRecentPublications(limit = 3): Promise<readonly Publica
     .orderBy(desc(publications.publishedAt), desc(publications.createdAt))
     .limit(limit);
 }
+
+export const getPublishedPublicationBySlug = cache(
+  async (slug: string): Promise<PublicationDetail | null> => {
+    const [publication] = await db
+      .select({ ...publicPublicationColumns, body: publications.body })
+      .from(publications)
+      .where(and(eq(publications.slug, slug), eq(publications.published, true)))
+      .limit(1);
+
+    return publication ?? null;
+  },
+);
