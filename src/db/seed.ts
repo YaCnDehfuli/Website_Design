@@ -1,15 +1,25 @@
-import "dotenv/config";
+import { config } from "dotenv";
 import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
 import { z } from "zod";
 import { projectTags, projects, publications, tags } from "./schema";
 
+config({ path: [".env.local", ".env"], quiet: true });
+
 const seedEnvironment = z.object({
   DATABASE_URL: z.string().url().startsWith("postgres"),
 });
 
-const { DATABASE_URL } = seedEnvironment.parse(process.env);
+const parsedEnvironment = seedEnvironment.safeParse(process.env);
+
+if (!parsedEnvironment.success) {
+  throw new Error(
+    "DATABASE_URL is missing or invalid. Copy .env.example to .env.local and provide a PostgreSQL URL.",
+  );
+}
+
+const { DATABASE_URL } = parsedEnvironment.data;
 const client = postgres(DATABASE_URL, { max: 1, prepare: false });
 const database = drizzle(client);
 const seededAt = new Date("2025-05-29T22:00:00.000Z");
@@ -131,9 +141,16 @@ async function seed() {
   });
 }
 
-try {
-  await seed();
-  console.info("Seed completed.");
-} finally {
-  await client.end();
+async function main() {
+  try {
+    await seed();
+    console.info("Seed completed.");
+  } finally {
+    await client.end();
+  }
 }
+
+void main().catch((error: unknown) => {
+  console.error("Seed failed.", error);
+  process.exitCode = 1;
+});

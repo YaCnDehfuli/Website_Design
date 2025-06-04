@@ -15,6 +15,8 @@ The application is available at [http://localhost:3000](http://localhost:3000).
 Start the local PostgreSQL service before working on database-backed features:
 
 ```bash
+# Start Docker Desktop first on macOS, then verify its engine is ready.
+docker info
 docker compose up -d postgres
 docker compose ps
 ```
@@ -26,6 +28,10 @@ the local database.
 Copy `.env.example` to `.env.local` before running database-backed commands. Runtime queries use
 `DATABASE_URL`; Drizzle Kit uses `MIGRATION_DATABASE_URL` so deployments can keep pooled and direct
 credentials separate.
+
+If `pnpm dev` reports that another server is already running for this repository, use the existing
+URL printed in that server's output. Stop the existing process with `Ctrl+C` in its original terminal
+before starting another one.
 
 ## Available commands
 
