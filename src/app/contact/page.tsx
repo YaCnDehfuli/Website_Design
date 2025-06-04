@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { profile } from "@/content/profile";
+import { ContactForm } from "@/features/contact/contact-form";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -99,6 +100,8 @@ export default function ContactPage() {
         </aside>
       </section>
 
+      <ContactForm />
+
       <section className={styles.channels} aria-labelledby="channels-title">
         <div>
           <p className="section-kicker">01 / available routes</p>
@@ -126,9 +129,9 @@ export default function ContactPage() {
         <span className={styles.statusLight} aria-hidden="true" />
         <p>
           <code>contact_form.service</code>
-          <small>scheduled for the database milestone · email fallback active</small>
+          <small>database persistence active · email fallback available</small>
         </p>
-        <span>QUEUED</span>
+        <span>ONLINE</span>
       </aside>
     </div>
   );

@@ -240,8 +240,8 @@
   width: 0.6rem;
   height: 0.6rem;
   border-radius: 50%;
-  background: var(--color-amber);
-  box-shadow: 0 0 0.8rem var(--color-amber);
+  background: var(--color-lime);
+  box-shadow: 0 0 0.8rem var(--color-lime);
 }
 
 .serviceStatus p {
@@ -261,7 +261,7 @@
 }
 
 .serviceStatus > span:last-child {
-  color: var(--color-amber);
+  color: var(--color-lime);
   letter-spacing: 0.1em;
 }
 
