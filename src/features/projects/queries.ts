@@ -9,6 +9,13 @@ export type ProjectSummary = Readonly<{
   slug: string;
   title: string;
   summary: string;
+  projectType: "research" | "software" | "academic" | "dataset" | "embedded" | null;
+  role: string | null;
+  status: "published-research" | "maintained" | "completed" | "prototype" | "archived" | null;
+  organization: string | null;
+  startedAt: string | null;
+  endedAt: string | null;
+  heroImagePath: string | null;
   repositoryUrl: string | null;
   liveUrl: string | null;
   publishedAt: Date | null;
@@ -27,6 +34,13 @@ const publicProjectColumns = {
   slug: projects.slug,
   title: projects.title,
   summary: projects.summary,
+  projectType: projects.projectType,
+  role: projects.role,
+  status: projects.status,
+  organization: projects.organization,
+  startedAt: projects.startedAt,
+  endedAt: projects.endedAt,
+  heroImagePath: projects.heroImagePath,
   repositoryUrl: projects.repositoryUrl,
   liveUrl: projects.liveUrl,
   publishedAt: projects.publishedAt,
@@ -67,6 +81,13 @@ export const getPublishedProjectBySlug = cache(
         title: projects.title,
         summary: projects.summary,
         body: projects.body,
+        projectType: projects.projectType,
+        role: projects.role,
+        status: projects.status,
+        organization: projects.organization,
+        startedAt: projects.startedAt,
+        endedAt: projects.endedAt,
+        heroImagePath: projects.heroImagePath,
         repositoryUrl: projects.repositoryUrl,
         liveUrl: projects.liveUrl,
         publishedAt: projects.publishedAt,
@@ -108,6 +129,13 @@ function groupProjectRows(rows: readonly ProjectRow[]) {
       slug: row.slug,
       title: row.title,
       summary: row.summary,
+      projectType: row.projectType,
+      role: row.role,
+      status: row.status,
+      organization: row.organization,
+      startedAt: row.startedAt,
+      endedAt: row.endedAt,
+      heroImagePath: row.heroImagePath,
       repositoryUrl: row.repositoryUrl,
       liveUrl: row.liveUrl,
       publishedAt: row.publishedAt,

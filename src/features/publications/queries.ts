@@ -9,6 +9,9 @@ export type PublicationSummary = Readonly<{
   slug: string;
   title: string;
   summary: string;
+  publicationType: "journal" | "conference" | "thesis" | "report" | "article" | null;
+  authors: readonly string[] | null;
+  doi: string | null;
   venue: string | null;
   externalUrl: string | null;
   publishedAt: Date | null;
@@ -21,6 +24,9 @@ const publicPublicationColumns = {
   slug: publications.slug,
   title: publications.title,
   summary: publications.summary,
+  publicationType: publications.publicationType,
+  authors: publications.authors,
+  doi: publications.doi,
   venue: publications.venue,
   externalUrl: publications.externalUrl,
   publishedAt: publications.publishedAt,

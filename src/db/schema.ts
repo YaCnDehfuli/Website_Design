@@ -2,8 +2,10 @@ import { sql } from "drizzle-orm";
 import {
   boolean,
   check,
+  date,
   index,
   integer,
+  pgEnum,
   pgTable,
   primaryKey,
   text,
@@ -18,6 +20,30 @@ const timestamps = {
   updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow().notNull(),
 };
 
+export const projectTypeEnum = pgEnum("project_type", [
+  "research",
+  "software",
+  "academic",
+  "dataset",
+  "embedded",
+]);
+
+export const projectStatusEnum = pgEnum("project_status", [
+  "published-research",
+  "maintained",
+  "completed",
+  "prototype",
+  "archived",
+]);
+
+export const publicationTypeEnum = pgEnum("publication_type", [
+  "journal",
+  "conference",
+  "thesis",
+  "report",
+  "article",
+]);
+
 export const projects = pgTable(
   "projects",
   {
@@ -26,6 +52,13 @@ export const projects = pgTable(
     title: varchar("title", { length: 200 }).notNull(),
     summary: text("summary").notNull(),
     body: text("body").notNull(),
+    projectType: projectTypeEnum("project_type"),
+    role: varchar("role", { length: 200 }),
+    status: projectStatusEnum("status"),
+    organization: varchar("organization", { length: 240 }),
+    startedAt: date("started_at", { mode: "string" }),
+    endedAt: date("ended_at", { mode: "string" }),
+    heroImagePath: text("hero_image_path"),
     repositoryUrl: text("repository_url"),
     liveUrl: text("live_url"),
     featured: boolean("featured").default(false).notNull(),
@@ -49,6 +82,9 @@ export const publications = pgTable(
     title: varchar("title", { length: 240 }).notNull(),
     summary: text("summary").notNull(),
     body: text("body").notNull(),
+    publicationType: publicationTypeEnum("publication_type"),
+    authors: text("authors").array(),
+    doi: varchar("doi", { length: 255 }),
     venue: varchar("venue", { length: 200 }),
     externalUrl: text("external_url"),
     published: boolean("published").default(false).notNull(),
@@ -57,6 +93,7 @@ export const publications = pgTable(
   },
   (table) => [
     uniqueIndex("publications_slug_unique").on(table.slug),
+    uniqueIndex("publications_doi_unique").on(table.doi),
     index("publications_public_date_idx").on(table.published, table.publishedAt),
     check("publications_slug_format", sql`${table.slug} ~ '^[a-z0-9]+(?:-[a-z0-9]+)*$'`),
   ],
