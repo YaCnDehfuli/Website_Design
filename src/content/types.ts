@@ -13,18 +13,31 @@ export type FocusArea = Readonly<{
 
 export type SocialLink = Readonly<{
   label: string;
-  href: `https://${string}` | `mailto:${string}`;
+  href: `https://${string}`;
 }>;
 
 export type Profile = Readonly<{
   name: string;
   shortName: string;
-  role: string;
+  professionalHeadline: string;
+  location: string;
   introduction: string;
   biography: readonly string[];
-  email: string;
+  githubUrl: `https://${string}`;
+  linkedInUrl: `https://${string}`;
+  image: Readonly<{
+    src: `/${string}`;
+    alt: string;
+  }>;
   socialLinks: readonly SocialLink[];
   focusAreas: readonly FocusArea[];
+}>;
+
+export type TeachingAssignment = Readonly<{
+  startDate: string;
+  endDate: string;
+  title: string;
+  topics: string;
 }>;
 
 export type ExperienceEntry = Readonly<{
@@ -34,12 +47,14 @@ export type ExperienceEntry = Readonly<{
   endDate: string | "present";
   summary: string;
   highlights: readonly string[];
+  assignments?: readonly TeachingAssignment[];
 }>;
 
 export type EducationEntry = Readonly<{
   institution: string;
   credential: string;
-  field: string;
-  startDate?: string;
-  endDate?: string;
+  field?: string;
+  startDate: string;
+  endDate: string;
+  gpa: string;
 }>;

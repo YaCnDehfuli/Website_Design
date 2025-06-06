@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { education, experience } from "@/content/career";
 import { profile } from "@/content/profile";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
   title: "About",
-  description: `About ${profile.name}, experience, education, and technical interests.`,
+  description: `About ${profile.name}, security engineering experience, research, and education.`,
 };
 
 export default function AboutPage() {
@@ -14,26 +15,26 @@ export default function AboutPage() {
       <header className={styles.intro}>
         <p className="section-kicker">/about/whoami</p>
         <h1>
-          Human behind
-          <br /> the terminal.
+          Evidence before
+          <br /> abstraction.
         </h1>
-        <p className="lede">
-          Curiosity is the root process. Everything else—code, experiments, and documentation—is how
-          I inspect what it discovers.
-        </p>
+        <p className="lede">{profile.introduction}</p>
       </header>
 
       <section className={styles.profile} aria-labelledby="profile-title">
         <aside className={styles.identityCard}>
           <div className={styles.cardBar}>
             <span>IDENTITY.record</span>
-            <span>verified locally</span>
+            <span>{profile.location}</span>
           </div>
-          <div className={styles.avatar} aria-hidden="true">
-            <span>YD</span>
-            <i />
-            <i />
-            <i />
+          <div className={styles.avatar}>
+            <Image
+              src={profile.image.src}
+              alt={profile.image.alt}
+              fill
+              priority
+              sizes="(max-width: 48rem) 14rem, 18rem"
+            />
           </div>
           <dl>
             <div>
@@ -41,26 +42,28 @@ export default function AboutPage() {
               <dd>{profile.name}</dd>
             </div>
             <div>
-              <dt>domain</dt>
-              <dd>{profile.role}</dd>
+              <dt>focus</dt>
+              <dd>{profile.professionalHeadline}</dd>
             </div>
             <div>
-              <dt>state</dt>
-              <dd className={styles.online}>● learning</dd>
+              <dt>location</dt>
+              <dd>{profile.location}</dd>
             </div>
           </dl>
         </aside>
 
         <div className={styles.biography}>
           <p className="section-kicker">00 / profile</p>
-          <h2 id="profile-title">A little context</h2>
+          <h2 id="profile-title">Security engineering meets research.</h2>
           {profile.biography.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}
-          <div className={styles.values}>
-            <span>🧭 evidence over certainty</span>
-            <span>🔍 questions over assumptions</span>
-            <span>🧰 simple tools, used well</span>
+          <div className={styles.socialLinks}>
+            {profile.socialLinks.map((link) => (
+              <a href={link.href} key={link.label} target="_blank" rel="noreferrer">
+                {link.label} <span aria-hidden="true">↗</span>
+              </a>
+            ))}
           </div>
         </div>
       </section>
@@ -68,7 +71,7 @@ export default function AboutPage() {
       <section className={styles.interests} aria-labelledby="interests-title">
         <div className={styles.sectionLabel}>
           <p className="section-kicker">01 / active threads</p>
-          <h2 id="interests-title">Technical interests</h2>
+          <h2 id="interests-title">Technical focus</h2>
         </div>
         <div className={styles.interestList}>
           {profile.focusAreas.map((area, index) => (
@@ -86,56 +89,81 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className={styles.history} aria-labelledby="history-title">
+      <section className={styles.history} aria-labelledby="experience-title">
         <div className={styles.sectionLabel}>
-          <p className="section-kicker">02 / history</p>
-          <h2 id="history-title">Experience & education</h2>
+          <p className="section-kicker">02 / experience.log</p>
+          <h2 id="experience-title">Experience</h2>
         </div>
-        <div className={styles.historyColumns}>
-          <HistoryList
-            title="experience.log"
-            entries={experience}
-            emptyLabel="experience"
-            getTitle={(entry) => entry.role}
-          />
-          <HistoryList
-            title="education.log"
-            entries={education}
-            emptyLabel="education"
-            getTitle={(entry) => entry.credential}
-          />
-        </div>
-      </section>
-    </div>
-  );
-}
-
-type HistoryListProps<Entry> = Readonly<{
-  title: string;
-  entries: readonly Entry[];
-  emptyLabel: string;
-  getTitle: (entry: Entry) => string;
-}>;
-
-function HistoryList<Entry>({ title, entries, emptyLabel, getTitle }: HistoryListProps<Entry>) {
-  return (
-    <div className={styles.historyList}>
-      <p className={styles.fileName}>{title}</p>
-      {entries.length === 0 ? (
-        <div className={styles.emptyState}>
-          <span aria-hidden="true">[ ]</span>
-          <p>
-            Verified {emptyLabel} entries are being prepared.
-            <small>No placeholder credentials inserted.</small>
-          </p>
-        </div>
-      ) : (
-        <ol>
-          {entries.map((entry) => (
-            <li key={getTitle(entry)}>{getTitle(entry)}</li>
+        <ol className={styles.experienceList}>
+          {experience.map((entry, index) => (
+            <li key={`${entry.organization}-${entry.role}`}>
+              <article>
+                <div className={styles.timelineMarker} aria-hidden="true">
+                  {String(index + 1).padStart(2, "0")}
+                </div>
+                <div className={styles.experienceBody}>
+                  <div className={styles.experienceHeader}>
+                    <div>
+                      <h3>{entry.role}</h3>
+                      <p>{entry.organization}</p>
+                    </div>
+                    <p className={styles.dateRange}>
+                      <time>{entry.startDate}</time> — <time>{entry.endDate}</time>
+                    </p>
+                  </div>
+                  <p className={styles.summary}>{entry.summary}</p>
+                  <ul className={styles.highlights}>
+                    {entry.highlights.map((highlight) => (
+                      <li key={highlight}>{highlight}</li>
+                    ))}
+                  </ul>
+                  {entry.assignments && (
+                    <div className={styles.assignments}>
+                      <h4>Selected teaching assignments</h4>
+                      <ul>
+                        {entry.assignments.map((assignment) => (
+                          <li key={`${assignment.startDate}-${assignment.title}`}>
+                            <p>
+                              <strong>{assignment.title}</strong>
+                              <span>
+                                {assignment.startDate}–{assignment.endDate}
+                              </span>
+                            </p>
+                            <small>{assignment.topics}</small>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </article>
+            </li>
           ))}
         </ol>
-      )}
+      </section>
+
+      <section className={styles.education} aria-labelledby="education-title">
+        <div className={styles.sectionLabel}>
+          <p className="section-kicker">03 / education.log</p>
+          <h2 id="education-title">Education</h2>
+        </div>
+        <div className={styles.educationGrid}>
+          {education.map((entry) => (
+            <article key={entry.institution}>
+              <p className={styles.dateRange}>
+                {entry.startDate} — {entry.endDate}
+              </p>
+              <h3>{entry.credential}</h3>
+              <p>{entry.institution}</p>
+              {entry.field && <p>{entry.field}</p>}
+              <dl>
+                <dt>GPA</dt>
+                <dd>{entry.gpa}</dd>
+              </dl>
+            </article>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

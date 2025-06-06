@@ -8,8 +8,6 @@ export const metadata: Metadata = {
   description: `Contact ${profile.name} about software, security, AI, or shared technical interests.`,
 };
 
-const emailLink = `mailto:${profile.email}?subject=Hello%20Yasin`;
-
 export default function ContactPage() {
   return (
     <div className={styles.page}>
@@ -44,7 +42,7 @@ export default function ContactPage() {
                 <span>✓</span> identity: {profile.name}
               </p>
               <p>
-                <span>✓</span> channel: email
+                <span>✓</span> channel: contact form
               </p>
               <p>
                 <span>✓</span> status: ready to receive
@@ -55,16 +53,24 @@ export default function ContactPage() {
             </p>
           </div>
           <div className={styles.terminalActions}>
-            <a className={styles.emailAction} href={emailLink}>
-              <span aria-hidden="true">✉</span> send_email
+            <a className={styles.emailAction} href="#message-title">
+              <span aria-hidden="true">↓</span> open_message_buffer
             </a>
             <a
               className={styles.githubAction}
-              href="https://github.com/YaCnDehfuli"
+              href={profile.githubUrl}
               target="_blank"
               rel="noreferrer"
             >
               <span aria-hidden="true">↗</span> inspect_github
+            </a>
+            <a
+              className={styles.githubAction}
+              href={profile.linkedInUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span aria-hidden="true">↗</span> open_linkedin
             </a>
           </div>
         </div>
@@ -109,17 +115,24 @@ export default function ContactPage() {
         </div>
         <dl>
           <div>
-            <dt>📨 Email</dt>
+            <dt>▶ Form</dt>
             <dd>
-              <a href={emailLink}>{profile.email}</a>
-              <span>conversation · feedback · collaboration</span>
+              <a href="#message-title">Message buffer</a>
+              <span>primary route · stored securely for response</span>
             </dd>
           </div>
           <div>
             <dt>⌘ GitHub</dt>
             <dd>
-              <a href="https://github.com/YaCnDehfuli">@YaCnDehfuli</a>
+              <a href={profile.githubUrl}>@YaCnDehfuli</a>
               <span>source · issues · technical context</span>
+            </dd>
+          </div>
+          <div>
+            <dt>in LinkedIn</dt>
+            <dd>
+              <a href={profile.linkedInUrl}>Yasin Dehfouli</a>
+              <span>professional profile · research context</span>
             </dd>
           </div>
         </dl>
@@ -129,7 +142,7 @@ export default function ContactPage() {
         <span className={styles.statusLight} aria-hidden="true" />
         <p>
           <code>contact_form.service</code>
-          <small>database persistence active · email fallback available</small>
+          <small>database persistence active · no public email exposed</small>
         </p>
         <span>ONLINE</span>
       </aside>

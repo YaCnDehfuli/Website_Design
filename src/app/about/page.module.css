@@ -3,15 +3,16 @@
   gap: clamp(6rem, 12vw, 10rem);
 }
 
-.intro {
+.intro,
+.sectionLabel {
   display: grid;
   justify-items: start;
-  gap: var(--space-5);
+  gap: var(--space-4);
 }
 
 .intro h1 {
   position: relative;
-  max-width: 11ch;
+  max-width: 12ch;
 }
 
 .intro h1::after {
@@ -24,7 +25,7 @@
   display: grid;
   align-items: start;
   gap: clamp(2rem, 7vw, 6rem);
-  grid-template-columns: minmax(17rem, 0.7fr) minmax(0, 1.3fr);
+  grid-template-columns: minmax(18rem, 0.72fr) minmax(0, 1.28fr);
 }
 
 .identityCard {
@@ -52,84 +53,50 @@
 }
 
 .avatar {
-  display: grid;
   position: relative;
-  width: 10rem;
-  height: 10rem;
-  place-items: center;
-  margin: var(--space-7) auto;
-  border: 1px solid var(--color-cyan);
-  border-radius: 50%;
-  background: radial-gradient(circle, rgb(99 242 208 / 14%), transparent 66%);
-  color: var(--color-text);
-  font-family: var(--font-mono);
-  font-size: 2.4rem;
-  font-weight: 800;
+  aspect-ratio: 434 / 410;
+  overflow: hidden;
+  border-bottom: 1px solid var(--color-line);
+  background: var(--color-panel);
 }
 
-.avatar::before,
-.avatar::after {
-  position: absolute;
-  border: 1px dashed var(--color-violet);
-  border-radius: 50%;
-  content: "";
-  inset: -0.65rem;
+.avatar img {
+  object-fit: cover;
 }
 
-.avatar::after {
-  border-color: rgb(99 242 208 / 20%);
-  inset: 1rem;
-}
-
-.avatar i {
-  position: absolute;
-  width: 0.55rem;
-  height: 0.55rem;
-  border-radius: 50%;
-  background: var(--color-lime);
-  box-shadow: 0 0 1rem var(--color-lime);
-}
-
-.avatar i:nth-of-type(1) {
-  top: 0.9rem;
-  right: 1.5rem;
-}
-
-.avatar i:nth-of-type(2) {
-  right: -0.25rem;
-  bottom: 3.8rem;
-}
-
-.avatar i:nth-of-type(3) {
-  bottom: 0.45rem;
-  left: 2.1rem;
-}
-
-.identityCard dl {
+.identityCard dl,
+.educationGrid dl {
   margin: 0;
 }
 
 .identityCard dl div {
   display: grid;
   padding: var(--space-3) var(--space-4);
-  border-top: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
   gap: var(--space-3);
-  grid-template-columns: 4rem 1fr;
+  grid-template-columns: 4.5rem 1fr;
 }
 
-.identityCard dt {
-  color: var(--color-muted);
+.identityCard dl div:last-child {
+  border-bottom: 0;
+}
+
+.identityCard dt,
+.identityCard dd,
+.educationGrid dt,
+.educationGrid dd {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.66rem;
 }
 
-.identityCard dd {
+.identityCard dt,
+.educationGrid dt {
+  color: var(--color-muted);
+}
+
+.identityCard dd,
+.educationGrid dd {
   margin: 0;
-  font-size: 0.8rem;
-}
-
-.online {
-  color: var(--color-lime);
 }
 
 .biography {
@@ -143,30 +110,31 @@
   font-size: clamp(1rem, 2vw, 1.16rem);
 }
 
-.values {
+.socialLinks {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-2);
+  gap: var(--space-3);
 }
 
-.values span {
-  padding: 0.4rem 0.65rem;
+.socialLinks a {
+  padding: 0.55rem 0.75rem;
   border: 1px solid var(--color-line);
-  border-radius: 100vw;
-  color: var(--color-text);
+  border-radius: var(--radius-sm);
+  color: var(--color-cyan);
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.7rem;
+  text-decoration: none;
+}
+
+.socialLinks a:hover {
+  border-color: var(--color-cyan);
 }
 
 .interests,
-.history {
+.history,
+.education {
   display: grid;
   gap: var(--space-7);
-}
-
-.sectionLabel {
-  display: grid;
-  gap: var(--space-4);
 }
 
 .interestList {
@@ -182,8 +150,7 @@
   grid-template-columns: 2rem 3rem 1fr;
 }
 
-.interestIndex,
-.fileName {
+.interestIndex {
   color: var(--color-cyan);
   font-family: var(--font-mono);
   font-size: 0.66rem;
@@ -197,52 +164,155 @@
   margin-bottom: var(--space-1);
 }
 
-.interestList p {
+.interestList p,
+.summary,
+.educationGrid article > p:not(.dateRange) {
   color: var(--color-muted);
   font-size: 0.88rem;
 }
 
-.historyColumns {
-  display: grid;
-  gap: var(--space-5);
-  grid-template-columns: 1fr 1fr;
+.experienceList {
+  padding: 0;
+  border-top: 1px solid var(--color-line);
+  margin: 0;
+  list-style: none;
 }
 
-.historyList {
-  overflow: hidden;
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-sm);
-  background: rgb(11 20 32 / 60%);
-}
-
-.fileName {
-  padding: var(--space-3) var(--space-4);
+.experienceList > li {
   border-bottom: 1px solid var(--color-line);
 }
 
-.emptyState {
+.experienceList article {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr;
+}
+
+.timelineMarker {
+  display: grid;
+  place-items: start center;
+  padding-top: var(--space-6);
+  border-right: 1px solid var(--color-line);
+  color: var(--color-cyan);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+}
+
+.experienceBody {
+  display: grid;
+  padding: var(--space-6);
+  gap: var(--space-4);
+}
+
+.experienceHeader {
   display: flex;
   align-items: flex-start;
-  min-height: 8rem;
-  padding: var(--space-5);
-  gap: var(--space-3);
-  color: var(--color-muted);
+  justify-content: space-between;
+  gap: var(--space-4);
 }
 
-.emptyState > span {
-  color: var(--color-amber);
+.experienceHeader > div p {
+  margin-top: var(--space-1);
+  color: var(--color-violet);
+  font-size: 0.82rem;
+}
+
+.dateRange {
+  color: var(--color-lime);
   font-family: var(--font-mono);
+  font-size: 0.65rem;
+  white-space: nowrap;
 }
 
-.emptyState small {
-  display: block;
-  margin-top: var(--space-2);
-  font-family: var(--font-mono);
-  font-size: 0.66rem;
-}
-
-.historyList ol {
+.highlights {
+  display: grid;
+  padding: 0;
   margin: 0;
+  gap: var(--space-2);
+  list-style: none;
+}
+
+.highlights li {
+  position: relative;
+  padding-left: 1.2rem;
+  color: var(--color-muted);
+  font-size: 0.82rem;
+}
+
+.highlights li::before {
+  position: absolute;
+  left: 0;
+  color: var(--color-cyan);
+  content: "▹";
+}
+
+.assignments {
+  padding: var(--space-4);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: rgb(11 20 32 / 55%);
+}
+
+.assignments h4 {
+  margin: 0 0 var(--space-3);
+  color: var(--color-text);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.assignments ul {
+  display: grid;
+  padding: 0;
+  margin: 0;
+  gap: var(--space-3);
+  list-style: none;
+}
+
+.assignments li p {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.assignments strong {
+  font-size: 0.78rem;
+}
+
+.assignments span,
+.assignments small {
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: 0.61rem;
+}
+
+.assignments small {
+  display: block;
+  margin-top: var(--space-1);
+}
+
+.educationGrid {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: 1fr 1fr;
+}
+
+.educationGrid article {
+  display: grid;
+  padding: var(--space-6);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: linear-gradient(145deg, rgb(16 29 43 / 72%), rgb(3 7 12 / 70%));
+  gap: var(--space-3);
+}
+
+.educationGrid dl {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.educationGrid dd {
+  color: var(--color-lime);
 }
 
 @keyframes blink {
@@ -253,11 +323,31 @@
 
 @media (max-width: 48rem) {
   .profile,
-  .historyColumns {
+  .educationGrid {
     grid-template-columns: 1fr;
   }
 
   .identityCard {
-    max-width: 24rem;
+    max-width: 26rem;
+  }
+
+  .experienceHeader,
+  .assignments li p {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .dateRange {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 32rem) {
+  .experienceList article {
+    grid-template-columns: 2.5rem 1fr;
+  }
+
+  .experienceBody {
+    padding: var(--space-5) var(--space-4);
   }
 }

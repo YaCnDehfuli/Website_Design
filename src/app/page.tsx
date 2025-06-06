@@ -17,7 +17,7 @@ export default function Home() {
           <h1 id="hero-title">
             Hello, I&apos;m <span>Yasin.</span>
           </h1>
-          <p className={styles.role}>{profile.role}</p>
+          <p className={styles.role}>{profile.professionalHeadline}</p>
           <p className="lede">{profile.introduction}</p>
           <div className={styles.actions}>
             <Link className={styles.primaryAction} href="/projects">
