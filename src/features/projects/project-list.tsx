@@ -25,7 +25,7 @@ export function ProjectList({ projects }: ProjectListProps) {
         <article className={styles.card} key={project.id}>
           <div className={styles.cardMeta}>
             <span>NODE_{String(index + 1).padStart(2, "0")}</span>
-            <span>{project.publishedAt ? project.publishedAt.getUTCFullYear() : "active"}</span>
+            <span>{formatLabel(project.status ?? project.projectType ?? "project")}</span>
           </div>
           <div className={styles.visual} aria-hidden="true">
             <span />
@@ -34,10 +34,13 @@ export function ProjectList({ projects }: ProjectListProps) {
             <i>{project.slug.slice(0, 2).toUpperCase()}</i>
           </div>
           <div className={styles.cardBody}>
+            {project.projectType && (
+              <p className={styles.projectType}>{formatLabel(project.projectType)}</p>
+            )}
             <h2>{project.title}</h2>
             <p>{project.summary}</p>
             <ul aria-label={`${project.title} technologies`}>
-              {project.tags.map((tag) => (
+              {project.tags.slice(0, 5).map((tag) => (
                 <li key={tag.slug}>#{tag.slug}</li>
               ))}
             </ul>
@@ -49,4 +52,8 @@ export function ProjectList({ projects }: ProjectListProps) {
       ))}
     </div>
   );
+}
+
+function formatLabel(value: string) {
+  return value.replaceAll("-", " ");
 }

@@ -28,6 +28,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   const repositoryUrl = safeHttpUrl(project.repositoryUrl);
   const liveUrl = safeHttpUrl(project.liveUrl);
+  const projectRange = formatDateRange(project.startedAt, project.endedAt);
 
   return (
     <article className={styles.page}>
@@ -58,14 +59,42 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         <aside className={styles.sidebar} aria-label="Project links and status">
           <p className={styles.sidebarTitle}>PROJECT.record</p>
           <dl>
-            <div>
-              <dt>state</dt>
-              <dd>● published</dd>
-            </div>
-            <div>
-              <dt>released</dt>
-              <dd>{formatDate(project.publishedAt)}</dd>
-            </div>
+            {project.projectType && (
+              <div>
+                <dt>type</dt>
+                <dd>{formatLabel(project.projectType)}</dd>
+              </div>
+            )}
+            {project.status && (
+              <div>
+                <dt>status</dt>
+                <dd>● {formatLabel(project.status)}</dd>
+              </div>
+            )}
+            {project.role && (
+              <div>
+                <dt>role</dt>
+                <dd>{project.role}</dd>
+              </div>
+            )}
+            {project.organization && (
+              <div>
+                <dt>org</dt>
+                <dd>{project.organization}</dd>
+              </div>
+            )}
+            {projectRange && (
+              <div>
+                <dt>period</dt>
+                <dd>{projectRange}</dd>
+              </div>
+            )}
+            {project.publishedAt && (
+              <div>
+                <dt>released</dt>
+                <dd>{formatDate(project.publishedAt)}</dd>
+              </div>
+            )}
             <div>
               <dt>tags</dt>
               <dd>{project.tags.length}</dd>
@@ -103,11 +132,31 @@ function safeHttpUrl(value: string | null) {
 }
 
 function formatDate(value: Date | null) {
-  if (!value) return "undated";
+  if (!value) return null;
 
   return new Intl.DateTimeFormat("en", {
     month: "short",
     year: "numeric",
     timeZone: "UTC",
   }).format(value);
+}
+
+function formatDateRange(startedAt: string | null, endedAt: string | null) {
+  if (!startedAt && !endedAt) return null;
+
+  const start = startedAt ? formatMonth(startedAt) : null;
+  const end = endedAt ? formatMonth(endedAt) : "present";
+  return start ? `${start} — ${end}` : `through ${end}`;
+}
+
+function formatMonth(value: string) {
+  return new Intl.DateTimeFormat("en", {
+    month: "short",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(new Date(`${value}T00:00:00.000Z`));
+}
+
+function formatLabel(value: string) {
+  return value.replaceAll("-", " ");
 }

@@ -5,7 +5,7 @@ import styles from "./page.module.css";
 
 export const metadata: Metadata = {
   title: "Projects",
-  description: "Selected software, security, and AI projects with implementation notes.",
+  description: "Security research, memory-forensics tooling, and applied-AI case studies.",
 };
 
 export const dynamic = "force-dynamic";
@@ -18,11 +18,11 @@ export default async function ProjectsPage() {
       <header className={styles.intro}>
         <div>
           <p className="section-kicker">/projects/index</p>
-          <h1>Systems I can explain.</h1>
+          <h1>Evidence-first systems.</h1>
         </div>
         <p className="lede">
-          Selected builds documented beyond the screenshot: the problem, constraints, technical
-          decisions, and what the result taught me.
+          Research and software documented beyond the headline result: the evidence pipeline,
+          technical choices, evaluation, and reliability boundaries.
         </p>
       </header>
       <div className={styles.status}>

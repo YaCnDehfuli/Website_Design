@@ -30,12 +30,16 @@ export function PublicationList({ publications }: PublicationListProps) {
             </div>
             <div className={styles.body}>
               <div className={styles.meta}>
-                <span>{publication.venue ?? "Independent note"}</span>
+                <span>{formatLabel(publication.publicationType ?? "publication")}</span>
                 <time dateTime={publication.publishedAt?.toISOString()}>
                   {formatDate(publication.publishedAt)}
                 </time>
               </div>
               <h2>{publication.title}</h2>
+              {publication.authors && publication.authors.length > 0 && (
+                <p className={styles.authors}>{publication.authors.join(" · ")}</p>
+              )}
+              {publication.venue && <p className={styles.venue}>{publication.venue}</p>}
               <p>{publication.summary}</p>
             </div>
             <Link
@@ -60,4 +64,8 @@ function formatDate(value: Date | null) {
     year: "numeric",
     timeZone: "UTC",
   }).format(value);
+}
+
+function formatLabel(value: string) {
+  return value.replaceAll("-", " ");
 }

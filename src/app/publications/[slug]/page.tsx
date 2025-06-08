@@ -27,6 +27,7 @@ export default async function PublicationPage({ params }: PublicationPageProps) 
   if (!publication) notFound();
 
   const externalUrl = safeHttpUrl(publication.externalUrl);
+  const doiUrl = publication.doi ? safeHttpUrl(`https://doi.org/${publication.doi}`) : null;
 
   return (
     <article className={styles.page}>
@@ -43,16 +44,52 @@ export default async function PublicationPage({ params }: PublicationPageProps) 
         <h1>{publication.title}</h1>
         <p className="lede">{publication.summary}</p>
         <dl className={styles.metadata}>
-          <div>
-            <dt>channel</dt>
-            <dd>{publication.venue ?? "Independent note"}</dd>
-          </div>
-          <div>
-            <dt>released</dt>
-            <dd>{formatDate(publication.publishedAt)}</dd>
-          </div>
+          {publication.publicationType && (
+            <div>
+              <dt>type</dt>
+              <dd>{formatLabel(publication.publicationType)}</dd>
+            </div>
+          )}
+          {publication.authors && publication.authors.length > 0 && (
+            <div>
+              <dt>authors</dt>
+              <dd>{publication.authors.join(" · ")}</dd>
+            </div>
+          )}
+          {publication.venue && (
+            <div>
+              <dt>venue</dt>
+              <dd>{publication.venue}</dd>
+            </div>
+          )}
+          {publication.publishedAt && (
+            <div>
+              <dt>released</dt>
+              <dd>{formatDate(publication.publishedAt)}</dd>
+            </div>
+          )}
+          {publication.doi && doiUrl && (
+            <div>
+              <dt>doi</dt>
+              <dd>
+                <a href={doiUrl} target="_blank" rel="noreferrer">
+                  {publication.doi}
+                </a>
+              </dd>
+            </div>
+          )}
         </dl>
       </header>
+
+      <section className={styles.citation} aria-labelledby="citation-title">
+        <p id="citation-title">CITE.record</p>
+        <cite>
+          {publication.authors?.join(" and ")}. “{publication.title}.”
+          {publication.venue ? ` ${publication.venue}.` : ""}
+          {publication.publishedAt ? ` ${publication.publishedAt.getUTCFullYear()}.` : ""}
+          {publication.doi ? ` doi:${publication.doi}.` : ""}
+        </cite>
+      </section>
 
       <div className={styles.document}>
         <div className={styles.fileBar}>
@@ -93,7 +130,7 @@ function safeHttpUrl(value: string | null) {
 }
 
 function formatDate(value: Date | null) {
-  if (!value) return "undated";
+  if (!value) return null;
 
   return new Intl.DateTimeFormat("en", {
     day: "numeric",
@@ -101,4 +138,8 @@ function formatDate(value: Date | null) {
     year: "numeric",
     timeZone: "UTC",
   }).format(value);
+}
+
+function formatLabel(value: string) {
+  return value.replaceAll("-", " ");
 }

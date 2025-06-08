@@ -1,7 +1,7 @@
 .grid {
   display: grid;
   gap: var(--space-5);
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
 }
 
 .card {
@@ -91,6 +91,15 @@
   gap: var(--space-3);
 }
 
+.projectType {
+  color: var(--color-violet) !important;
+  font-family: var(--font-mono);
+  font-size: 0.64rem !important;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .cardBody p {
   color: var(--color-muted);
   font-size: 0.9rem;
@@ -151,10 +160,4 @@
   display: block;
   font-family: var(--font-mono);
   font-size: 0.66rem;
-}
-
-@media (max-width: 45rem) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
 }

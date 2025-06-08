@@ -67,6 +67,18 @@
   font-size: 0.9rem;
 }
 
+.body .authors {
+  color: var(--color-text);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.body .venue {
+  color: var(--color-violet);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+}
+
 .list article > a {
   display: grid;
   place-items: center;

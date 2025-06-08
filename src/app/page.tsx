@@ -2,13 +2,24 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SecurityOrbit } from "@/components/visuals/security-orbit";
 import { profile } from "@/content/profile";
+import { ProjectList } from "@/features/projects/project-list";
+import { getFeaturedProjects } from "@/features/projects/queries";
+import { PublicationList } from "@/features/publications/publication-list";
+import { getRecentPublications } from "@/features/publications/queries";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
   title: "Home",
 };
 
-export default function Home() {
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+  const [featuredProjects, recentPublications] = await Promise.all([
+    getFeaturedProjects(3),
+    getRecentPublications(2),
+  ]);
+
   return (
     <div className={styles.page}>
       <section className={styles.hero} aria-labelledby="hero-title">
@@ -25,11 +36,19 @@ export default function Home() {
             </Link>
             <a
               className={styles.secondaryAction}
-              href="https://github.com/YaCnDehfuli"
+              href={profile.githubUrl}
               target="_blank"
               rel="noreferrer"
             >
               <span aria-hidden="true">↗</span> GitHub
+            </a>
+            <a
+              className={styles.secondaryAction}
+              href={profile.linkedInUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span aria-hidden="true">↗</span> LinkedIn
             </a>
           </div>
           <dl className={styles.heroStatus} aria-label="Site status">
@@ -73,9 +92,43 @@ export default function Home() {
         </div>
       </section>
 
+      <section className={styles.work} aria-labelledby="work-title">
+        <div className={styles.sectionHeading}>
+          <div>
+            <p className="section-kicker">02 / selected operations</p>
+            <h2 id="work-title">Featured work</h2>
+          </div>
+          <p>
+            Research and software built around volatile-memory evidence, explainable detection, and
+            repeatable analysis.
+          </p>
+        </div>
+        <ProjectList projects={featuredProjects} />
+        <Link className={styles.sectionLink} href="/projects">
+          inspect_all_projects <span aria-hidden="true">↗</span>
+        </Link>
+      </section>
+
+      <section className={styles.research} aria-labelledby="research-title">
+        <div className={styles.sectionHeading}>
+          <div>
+            <p className="section-kicker">03 / research archive</p>
+            <h2 id="research-title">Recent publications</h2>
+          </div>
+          <p>
+            Peer-reviewed work on memory-forensics systems, malware detection, and the evidence
+            needed to evaluate them.
+          </p>
+        </div>
+        <PublicationList publications={recentPublications} />
+        <Link className={styles.sectionLink} href="/publications">
+          browse_publication_archive <span aria-hidden="true">↗</span>
+        </Link>
+      </section>
+
       <section className={styles.index} aria-labelledby="index-title">
         <div className={styles.indexIntro}>
-          <p className="section-kicker">02 / public index</p>
+          <p className="section-kicker">04 / public index</p>
           <h2 id="index-title">Trace the work, not just the outcome.</h2>
           <p className="lede">
             Projects show the implementation. Writing records the reasoning. The engineering lab
@@ -108,6 +161,20 @@ export default function Home() {
             <span aria-hidden="true">↗</span>
           </Link>
         </div>
+      </section>
+
+      <section className={styles.contactCta} aria-labelledby="contact-title">
+        <div>
+          <p className="section-kicker">05 / establish contact</p>
+          <h2 id="contact-title">Have a security problem worth investigating?</h2>
+          <p>
+            I&apos;m interested in rigorous work across memory forensics, detection engineering,
+            applied AI, and research software.
+          </p>
+        </div>
+        <Link href="/contact">
+          open_secure_channel <span aria-hidden="true">↗</span>
+        </Link>
       </section>
 
       <aside className={styles.protocol} aria-label="Current working protocol">

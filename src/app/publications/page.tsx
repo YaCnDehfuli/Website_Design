@@ -5,7 +5,7 @@ import styles from "./page.module.css";
 
 export const metadata: Metadata = {
   title: "Publications",
-  description: "Technical notes and longer-form writing about software, systems, and security.",
+  description: "Peer-reviewed research on memory forensics and malware detection.",
 };
 
 export const dynamic = "force-dynamic";
@@ -18,11 +18,11 @@ export default async function PublicationsPage() {
       <header className={styles.intro}>
         <div>
           <p className="section-kicker">/publications/archive</p>
-          <h1>Notes from the investigation.</h1>
+          <h1>Published investigations.</h1>
         </div>
         <p className="lede">
-          Technical writing is a debugging tool for ideas. This archive records what I understand,
-          what remains uncertain, and enough context to challenge both.
+          Peer-reviewed work on volatile-memory evidence, explainable malware detection, forensic
+          datasets, and reproducible evaluation.
         </p>
       </header>
       <div className={styles.archiveBar}>
