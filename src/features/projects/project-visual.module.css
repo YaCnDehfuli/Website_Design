@@ -1,0 +1,53 @@
+.figure,
+.compact {
+  overflow: hidden;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  margin: 0;
+  background: var(--color-bg-deep);
+}
+
+.imageFrame {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 2 / 1;
+  background: var(--color-panel);
+}
+
+.imageFrame img {
+  object-fit: contain;
+}
+
+.figure figcaption,
+.compact figcaption {
+  padding: var(--space-3) var(--space-4);
+  border-top: 1px solid var(--color-line);
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  line-height: 1.55;
+}
+
+.figure figcaption a,
+.compact figcaption a {
+  color: var(--color-cyan);
+  overflow-wrap: anywhere;
+  text-decoration: none;
+}
+
+.compact {
+  border: 0;
+  border-bottom: 1px solid var(--color-line);
+  border-radius: 0;
+}
+
+.compact .imageFrame {
+  aspect-ratio: 16 / 9;
+}
+
+.compact figcaption {
+  min-height: 4.5rem;
+  padding: var(--space-2) var(--space-3);
+  border-color: var(--color-line);
+  font-size: 0.54rem;
+}

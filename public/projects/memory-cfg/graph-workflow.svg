@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title description">
+  <title id="title">Memory-dump graph-classification workflow</title>
+  <desc id="description">A pipeline from process memory and SMDA disassembly through control-flow and call graphs to learned assembly embeddings, graph neural networks, and malware classification.</desc>
+  <defs>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#101d2b" />
+      <stop offset="1" stop-color="#03070c" />
+    </linearGradient>
+    <linearGradient id="signal" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#63f2d0" />
+      <stop offset="1" stop-color="#a78bfa" />
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#63f2d0" />
+    </marker>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#63f2d0" stroke-opacity=".05" />
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="675" rx="28" fill="#060b12" />
+  <rect width="1200" height="675" rx="28" fill="url(#grid)" />
+  <text x="64" y="70" fill="#63f2d0" font-family="monospace" font-size="18" font-weight="700" letter-spacing="3">MEMORY_GRAPH.PIPELINE</text>
+  <text x="1136" y="70" fill="#91a5a3" font-family="monospace" font-size="14" text-anchor="end">STRUCTURE → REPRESENTATION → DECISION</text>
+
+  <g fill="none" stroke="#63f2d0" stroke-width="3" marker-end="url(#arrow)">
+    <path d="M246 230H330" />
+    <path d="M522 230H606" />
+    <path d="M798 230H882" />
+    <path d="M980 310V405" />
+    <path d="M882 500H798" />
+    <path d="M606 500H522" />
+  </g>
+
+  <g font-family="Inter,Arial,sans-serif">
+    <g transform="translate(54 150)">
+      <rect width="192" height="160" rx="18" fill="url(#panel)" stroke="#203445" />
+      <circle cx="96" cy="58" r="30" fill="none" stroke="#c8ff62" stroke-width="3" />
+      <path d="M74 58h44M96 36v44" stroke="#c8ff62" stroke-width="3" />
+      <text x="96" y="118" fill="#e8f2f0" font-size="20" font-weight="700" text-anchor="middle">Process memory</text>
+      <text x="96" y="141" fill="#91a5a3" font-family="monospace" font-size="12" text-anchor="middle">volatile evidence</text>
+    </g>
+
+    <g transform="translate(330 150)">
+      <rect width="192" height="160" rx="18" fill="url(#panel)" stroke="#203445" />
+      <path d="M56 48h80M56 67h58M56 86h70" stroke="#a78bfa" stroke-width="5" stroke-linecap="round" />
+      <text x="96" y="118" fill="#e8f2f0" font-size="20" font-weight="700" text-anchor="middle">SMDA</text>
+      <text x="96" y="141" fill="#91a5a3" font-family="monospace" font-size="12" text-anchor="middle">disassembly</text>
+    </g>
+
+    <g transform="translate(606 150)">
+      <rect width="192" height="160" rx="18" fill="url(#panel)" stroke="#203445" />
+      <g stroke="#63f2d0" stroke-width="2">
+        <path d="M52 54L96 39l43 29-20 34-52-5z" />
+        <path d="M52 54l15 43m29-58 23 63m20-34L67 97" />
+      </g>
+      <g fill="#c8ff62"><circle cx="52" cy="54" r="6" /><circle cx="96" cy="39" r="6" /><circle cx="139" cy="68" r="6" /><circle cx="119" cy="102" r="6" /><circle cx="67" cy="97" r="6" /></g>
+      <text x="96" y="128" fill="#e8f2f0" font-size="20" font-weight="700" text-anchor="middle">CFG + call graph</text>
+      <text x="96" y="150" fill="#91a5a3" font-family="monospace" font-size="12" text-anchor="middle">functions · blocks · edges</text>
+    </g>
+
+    <g transform="translate(882 150)">
+      <rect width="264" height="160" rx="18" fill="url(#panel)" stroke="#203445" />
+      <g fill="none" stroke="url(#signal)" stroke-width="5">
+        <path d="M54 48h156M70 68h124M88 88h88" />
+      </g>
+      <text x="132" y="124" fill="#e8f2f0" font-size="20" font-weight="700" text-anchor="middle">Assembly embeddings</text>
+      <text x="132" y="147" fill="#91a5a3" font-family="monospace" font-size="12" text-anchor="middle">DistilBERT representations</text>
+    </g>
+
+    <g transform="translate(882 405)">
+      <rect width="264" height="160" rx="18" fill="url(#panel)" stroke="#203445" />
+      <g transform="translate(58 28)" fill="none" stroke="#a78bfa" stroke-width="3">
+        <circle cx="18" cy="18" r="14" /><circle cx="92" cy="18" r="14" /><circle cx="55" cy="70" r="14" />
+        <path d="M30 26l16 31m36-31L65 57M32 18h46" />
+      </g>
+      <text x="132" y="124" fill="#e8f2f0" font-size="20" font-weight="700" text-anchor="middle">Graph models</text>
+      <text x="132" y="147" fill="#91a5a3" font-family="monospace" font-size="12" text-anchor="middle">GraphSAGE · DiffPool</text>
+    </g>
+
+    <g transform="translate(606 405)">
+      <rect width="192" height="160" rx="18" fill="url(#panel)" stroke="#203445" />
+      <rect x="46" y="42" width="100" height="55" rx="9" fill="none" stroke="#63f2d0" stroke-width="3" />
+      <path d="M64 79l21-20 18 14 25-27" fill="none" stroke="#c8ff62" stroke-width="4" />
+      <text x="96" y="128" fill="#e8f2f0" font-size="20" font-weight="700" text-anchor="middle">Evaluation</text>
+      <text x="96" y="150" fill="#91a5a3" font-family="monospace" font-size="12" text-anchor="middle">70 / 15 / 15 split</text>
+    </g>
+
+    <g transform="translate(276 405)">
+      <rect width="246" height="160" rx="18" fill="url(#panel)" stroke="#203445" />
+      <path d="M72 81l28 28 72-72" fill="none" stroke="#c8ff62" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)" />
+      <text x="123" y="128" fill="#e8f2f0" font-size="20" font-weight="700" text-anchor="middle">Malware class</text>
+      <text x="123" y="150" fill="#91a5a3" font-family="monospace" font-size="12" text-anchor="middle">binary · family</text>
+    </g>
+  </g>
+
+  <text x="64" y="632" fill="#91a5a3" font-family="monospace" font-size="13">REPOSITORY-VERIFIED MODEL FAMILIES · ORIGINAL PORTFOLIO DIAGRAM</text>
+</svg>

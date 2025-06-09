@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { TrustedMarkdown } from "@/components/content/trusted-markdown";
+import { ProjectVisual } from "@/features/projects/project-visual";
 import { getPublishedProjectBySlug } from "@/features/projects/queries";
 import styles from "./page.module.css";
 
@@ -46,6 +47,14 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           ))}
         </ul>
       </header>
+
+      {project.heroImagePath && (
+        <ProjectVisual
+          path={project.heroImagePath}
+          projectSlug={project.slug}
+          projectTitle={project.title}
+        />
+      )}
 
       <div className={styles.caseStudy}>
         <section className={styles.content} aria-label="Case study">

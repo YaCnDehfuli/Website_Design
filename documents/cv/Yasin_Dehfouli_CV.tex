@@ -1,0 +1,327 @@
+\documentclass[11pt, letterpaper]{article}
+\linespread{0.98}
+\usepackage[sfdefault]{roboto}
+ % in preamble
+
+% \usepackage{helvet}
+% \renewcommand{\familydefault}{\sfdefault}
+% Packages:
+\usepackage[
+    ignoreheadfoot, % set margins without considering header and footer
+    top=0.5cm, % seperation between body and page edge from the top
+    bottom=0.5 cm, % INTENTIONAL: small bottom margin keeps the one-page fit. Do NOT change to 1.1 cm — that overflows to 2 pages. (Was the typo "1,1 cm", which LaTeX silently rendered as 1pt.)
+    left=0.75 cm, % seperation between body and page edge from the left
+    right=0.75 cm, % seperation between body and page edge from the right
+    % footskip=0.5 cm, % seperation between body and footer
+    % showframe % for debugging
+]{geometry} % for adjusting page geometry
+\usepackage{titlesec} % for customizing section titles
+\usepackage{tabularx} % for making tables with fixed width columns
+\usepackage{array} % tabularx requires this
+\usepackage[dvipsnames]{xcolor} % for coloring text
+\definecolor{primaryColor}{RGB}{0, 79, 144} % define primary color
+\usepackage{enumitem} % for customizing lists
+\usepackage{amsmath} % for math
+\usepackage[
+    pdftitle={Yasin Dehfouli's CV},
+    pdfauthor={Yasin Dehfouli},
+    pdfcreator={LaTeX with RenderCV},
+    pdfsubject={Security engineering, memory forensics, and applied AI},
+    pdfkeywords={security engineering, memory forensics, DFIR, applied AI},
+    colorlinks=true,
+    urlcolor=primaryColor
+]{hyperref} % for links, metadata and bookmarks
+\usepackage[pscoord]{eso-pic} % for floating text on the page
+\usepackage{calc} % for calculating lengths
+\usepackage{bookmark} % for bookmarks
+\usepackage{lastpage} % for getting the total number of pages
+\usepackage{changepage} % for one column entries (adjustwidth environment)
+\usepackage{paracol} % for two and three column entries
+\usepackage{ifthen} % for conditional statements
+\usepackage{needspace} % for avoiding page brake right after the section title
+\usepackage{cleveref}
+\usepackage{xcolor}
+\usepackage[colorlinks=true]{hyperref}
+\usepackage{iftex} % check if engine is pdflatex, xetex or luatex
+% Ensure that generate pdf is machine readable/ATS parsable:
+\ifPDFTeX
+    \input{glyphtounicode}
+    \pdfgentounicode=1
+    % \usepackage[T1]{fontenc} % this breaks sb2nov
+    \usepackage[utf8]{inputenc}
+    \usepackage{lmodern}
+\fi
+
+
+
+% Some settings:
+\AtBeginEnvironment{adjustwidth}{\partopsep0pt} % remove space before adjustwidth environment
+\pagestyle{empty} % no header or footer
+\setcounter{secnumdepth}{0} % no section numbering
+\setlength{\parindent}{0pt} % no indentation
+\setlength{\topskip}{0pt} % no top skip
+\setlength{\columnsep}{0cm} % set column seperation
+\makeatletter
+% \let\ps@customFooterStyle\ps@plain % Copy the plain style to customFooterStyle
+% \patchcmd{\ps@customFooterStyle}{\thepage}{
+%     \color{gray}\textit{\small Yasin Dehfouli - Page \thepage{} of \pageref*{LastPage}}
+% }{}{} % replace number by desired string
+% \makeatother
+% \pagestyle{customFooterStyle}
+
+\titleformat{\section}
+  {\needspace{4\baselineskip}\color{primaryColor}\bfseries\large}
+  {}{0pt}{}[\vspace{1pt}\color{primaryColor}\titlerule]
+
+\titlespacing{\section}{
+    -1pt
+}{
+    0.18 cm
+}{
+    0.08 cm
+} % section title spacing
+
+\renewcommand\labelitemi{$\circ$} % custom bullet points
+\newenvironment{highlights}{
+    \begin{itemize}[
+        topsep=0.02 cm,
+        parsep=0.02 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=0.4 cm + 10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights
+
+\newenvironment{highlightsforbulletentries}{
+    \begin{itemize}[
+        topsep=0.03 cm,
+        parsep=0.03 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights for bullet entries
+
+
+\newenvironment{onecolentry}{
+    \begin{adjustwidth}{
+        0.2 cm + 0.00001 cm
+    }{
+        0.2 cm + 0.00001 cm
+    }
+}{
+    \end{adjustwidth}
+} % new environment for one column entries
+
+\newenvironment{twocolentry}[2][]{
+    \onecolentry
+    \def\secondColumn{#2}
+    \setcolumnwidth{\fill, 4.5 cm}
+    \begin{paracol}{2}
+}{
+    \switchcolumn \raggedleft \secondColumn
+    \end{paracol}
+    \endonecolentry
+} % new environment for two column entries
+
+\newenvironment{header}{
+    \setlength{\topsep}{0pt}\par\kern\topsep\centering\linespread{1.25}
+}{
+    \par\kern\topsep
+} % new environment for the header
+
+\newcommand{\placelastupdatedtext}{%
+  \AddToShipoutPictureFG*{%
+    \put(
+        \LenToUnit{\paperwidth-2 cm-0.2 cm+0.05cm},
+        \LenToUnit{\paperheight-1.0 cm}
+    )
+  }%
+}%
+
+% save the original href command in a new command:
+\let\hrefWithoutArrow\href
+
+% new command for external links:
+\renewcommand{\href}[2]{\hrefWithoutArrow{#1}{\ifthenelse{\equal{#2}{}}{ }{#2}}}
+
+
+\begin{document}
+    \newcommand{\AND}{\unskip
+        \cleaders\copy\ANDbox\hskip\wd\ANDbox
+        \ignorespaces
+    }
+    \newsavebox\ANDbox
+    \sbox\ANDbox{}
+
+    \placelastupdatedtext
+    \begin{header}
+        \textbf{\fontsize{20 pt}{19 pt}\selectfont Yasin Dehfouli}
+
+        \normalsize
+        \mbox{Toronto, ON}%
+        \kern 0.1 cm%
+        \AND%
+        \kern 0.1 cm%
+        \mbox{\hrefWithoutArrow{mailto:dehfouliyasin@gmail.com}{\color{black}dehfouliyasin@gmail.com}}%
+        \kern 0.1 cm%
+        \AND%
+        \kern 0.1 cm%
+        \mbox{\hrefWithoutArrow{tel:+1 437 669 9232}{\color{black}437 669 9232}}%
+        \kern 0.1 cm%
+        \AND%
+        \kern 0.1 cm%
+        \mbox{\hrefWithoutArrow{https://linkedin.com/in/yasindehfuli}{\color{black}LinkedIn}}%
+        \kern 0.1 cm%
+        \AND%
+        \kern 0.1 cm%
+        \mbox{\hrefWithoutArrow{https://github.com/YaCnDehfuli}{\color{black}GitHub: YaCnDehfuli}}%
+    \end{header}
+
+
+\vspace{0.1cm}
+Cybersecurity engineer and published researcher who built a startup security function for customer assurance. Raised managed endpoint coverage from \textbf{24\% to 95\%}, established vulnerability and incident workflows, and built ATT\&CK-validated detections. Combines security operations with Python automation and memory forensics.
+
+    \vspace{-0.1cm}
+    \section{SKILLS} 
+        
+    \textbf{Security Operations:} Microsoft Defender, Intune, Entra ID, and Microsoft 365; incident triage, containment,  and response, endpoint and identity security, documentation/policies.
+    \vspace{0.05cm}
+    
+    \textbf{Detection \& Vulnerability Management:} Wazuh, Sysmon, MITRE ATT\&CK, Atomic Red Team, OpenVAS, Nmap, and OWASP ZAP; rule development, tuning, risk prioritization, and remediation validation, network security (TCP/IP, segmentation, firewalls).
+    \vspace{0.05cm}
+    
+    \textbf{Memory Forensics:} Volatility 3, malware analysis, IoC correlation, QEMU, and tcpdump.
+    
+    \textbf{Engineering \& Automation:} Python, C/C++, Bash, PowerShell, Git, Linux, APIs, and CI/CD.
+    
+    \vspace{-0.1cm}
+    \section{EXPERIENCE}
+
+    \vspace{0.05cm}
+    \begin{twocolentry}{
+        \textit{Mar 2025 - Apr 2026}}
+        \textbf{Security Engineer at }
+        \textit{\href{https://www.linkedin.com/company/hadeth-ca/}{Hadeth}}
+    \end{twocolentry}
+
+    \begin{onecolentry}
+    \begin{highlights}
+
+        \vspace{0.05cm}
+        \item Built and operated Hadeth's first security function to support \textbf{three prospective customers} requesting evidence of security controls; enrolled \textbf{20 of 21 devices} in Intune and Defender and enforced encryption, firewall, antimalware, and compliance baselines, raising managed endpoint coverage from \textbf{24\% to 95\%}.
+        % \item Built and operated Hadeth's first security function to support security evidence for\textbf{prospective customers}; established the endpoint baseline by enrolling \textbf{20 of 21 devices} in Microsoft Intune and Defender, enforcing encryption, firewall, antimalware, and compliance policies, raising active protection coverage from \textbf{24\% to 95\%}.
+        \vspace{0.085cm}
+
+        \item Hardened administrative access across Microsoft 365, GitHub, and hosting platforms with MFA and separate privileged accounts; removed \textbf{7 stale identities} and \textbf{10 excessive permissions}, and closed \textbf{3 public services}.
+        \vspace{0.085cm}
+        
+        \item Engineered \textbf{nine Wazuh rules} and hunting queries across Windows authentication, Sysmon, PowerShell, and agent-health telemetry to detect credential misuse, post-exploitation activity, and visibility loss; validated them with \textbf{23 ATT\&CK-aligned simulations} and reduced recurring non-actionable alerts by \textbf{38\%} in two months.
+        \vspace{0.085cm}
+               
+        \item Established a monthly vulnerability-remediation cycle, triaging \textbf{42 findings} from Defender, OpenVAS, Nmap, and OWASP ZAP by exploitability, exposure, and business impact; verified closure of \textbf{7 of 8 high-severity issues}.
+        \vspace{0.085cm}
+    
+        \item Operationalized incident response and investigated \textbf{8 phishing, suspicious-sign-in, malware, and credential-exposure cases} by correlating Defender, Entra, Sysmon, and email telemetry; established scope and root cause, coordinated containment, and documented remediation.
+
+
+    \end{highlights}
+\end{onecolentry}
+    
+    \vspace{0.15cm}
+    \begin{twocolentry}{
+        \textit{Sept 2023 -- Nov 2025}}
+        \textbf{Security Researcher at }
+        \textit{Behaviour-Centric Cybersecurity Center \href{https://www.yorku.ca/research/bccc/}{(BCCC)}}
+    \end{twocolentry}
+
+    \begin{onecolentry}
+    \begin{highlights}
+
+
+        \item Built and released VolMemLyzer, a Python framework orchestrating \textbf{70+ Volatility 3 plugins} with concurrency, caching, timeout controls, and cross-source IoC correlation, reducing per-image triage time by $\approx$\textbf{3--4 hours}. \
+        \vspace{0.085cm}
+        
+        
+        \item Built a reproducible QEMU malware-analysis pipeline using Python, Bash, and PowerShell; ran \textbf{2,250 samples} and captured \textbf{10,000+ synchronized memory snapshots} with host and network telemetry every 30 seconds.
+        \vspace{0.085cm}
+        
+        \item As \textbf{First Author and Primary Research Developer}, designed and published VADViT, an explainable Vision Transformer for malicious-process detection that achieved \textbf{99\% accuracy, 92\% F1} and generated region-level attention maps.
+        
+
+    \end{highlights}
+    \end{onecolentry}
+
+    \vspace{0.15cm}
+    \begin{twocolentry}{
+        \textit{Sept 2023 -- Apr 2026}}
+        \textbf{Teaching Assistant}
+        \textit{York University}
+    \end{twocolentry}
+    \begin{onecolentry}
+    \begin{highlights}
+        \item Delivered \textbf{20+ hands-on cybersecurity, Linux, and programming labs} for \textbf{300+ students} for 6 semesters.
+    \end{highlights}
+    \end{onecolentry}
+
+    \vspace{0.15cm}
+    \begin{twocolentry}{
+        \textit{Apr 2021 - Aug 2022}}
+        \textbf{AI Software Engineer}
+        \textit{\href{https://www.linkedin.com/company/noict---\%D9\%86\%D9\%88\%D8\%A2\%D9\%88\%D8\%B1\%D8\%A7\%D9\%86-\%D9\%81\%D9\%86\%D8\%A7\%D9\%88\%D8\%B1\%DB\%8C-\%D8\%A7\%D8\%B7\%D9\%84\%D8\%A7\%D8\%B9\%D8\%A7\%D8\%AA-\%D8\%A7\%D9\%85\%D8\%B1\%D9\%88\%D8\%B2}{noICT}}\hspace{-0.5cm}
+    \end{twocolentry}
+    \begin{onecolentry}
+        \begin{highlights}
+            \item Developed \textbf{10+ speech-to-command and smart-home features} using C/C++ on Arduino/Raspberry Pi and Python backend services; integrated device-to-backend data flows and shipped changes through Git-based CI/CD.
+        \end{highlights}
+    \end{onecolentry}
+
+     \vspace{-0.1cm}
+    \section{EDUCATION}
+    \vspace{0.05cm}
+        \begin{twocolentry}{
+        \textit{Sept 2023 -- May 2025}}
+            \textbf{MSc. in Computer Science  -  \href{https://www.topuniversities.com/universities/york-university}{York University}  -  GPA: 3.9}
+        \end{twocolentry}
+
+        % \vspace{0.1cm}
+        \begin{twocolentry}{
+        \textit{Sept 2017 -- Aug 2022}}
+            \textbf{BASc. in Electrical \& Computer Engineering  -  \href{https://www.topuniversities.com/universities/amirkabir-university-technology}{Amirkabir University} - GPA: 3.84}
+        \end{twocolentry}
+        
+    \vspace{-0.1cm}
+    \section {PUBLICATIONS}
+        \vspace{0.1cm}
+        \begin{twocolentry}{
+        \href{https://doi.org/10.1016/j.jisa.2025.104200}{DOI}
+        }
+            VADViT: Vision Transformer Driven Memory Forensics for Malicious Processes
+        \end{twocolentry}
+    
+        \begin{twocolentry}{
+            \href{https://doi.org/10.1145/3764580}{DOI}
+        }
+            Memory Analysis for Malware Detection: A Comprehensive Survey
+        \end{twocolentry}
+
+
+    \vspace{-0.1cm}
+    \section{HONORS \& AWARDS}
+    \vspace{0.05cm}
+        \begin{onecolentry}
+  
+            \textit{\textbf{*} \$67,500 York University Graduate Fellowship (plus 9 other fully-funded scholarships across North America)}\hfill\textbf{2022}
+        
+            \textit{\textbf{*} Nominated: Best Master's Thesis Award, Top 3 thesis at LA\&PS and top 10 in EECS at York University}\hfill\textbf{2025}
+    
+            \textit{\textbf{*} National Elite Foundation Fellowship in Iran: for continuous academic excellence}\hfill\textbf{2018-present}
+    
+
+        \end{onecolentry}
+
+\end{document}

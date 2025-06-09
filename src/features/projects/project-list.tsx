@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ProjectSummary } from "./queries";
+import { ProjectVisual } from "./project-visual";
 import styles from "./project-list.module.css";
 
 type ProjectListProps = Readonly<{
@@ -27,12 +28,21 @@ export function ProjectList({ projects }: ProjectListProps) {
             <span>NODE_{String(index + 1).padStart(2, "0")}</span>
             <span>{formatLabel(project.status ?? project.projectType ?? "project")}</span>
           </div>
-          <div className={styles.visual} aria-hidden="true">
-            <span />
-            <span />
-            <span />
-            <i>{project.slug.slice(0, 2).toUpperCase()}</i>
-          </div>
+          {project.heroImagePath ? (
+            <ProjectVisual
+              compact
+              path={project.heroImagePath}
+              projectSlug={project.slug}
+              projectTitle={project.title}
+            />
+          ) : (
+            <div className={styles.visual} aria-hidden="true">
+              <span />
+              <span />
+              <span />
+              <i>{project.slug.slice(0, 2).toUpperCase()}</i>
+            </div>
+          )}
           <div className={styles.cardBody}>
             {project.projectType && (
               <p className={styles.projectType}>{formatLabel(project.projectType)}</p>

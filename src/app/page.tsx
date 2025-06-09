@@ -50,6 +50,9 @@ export default async function Home() {
             >
               <span aria-hidden="true">↗</span> LinkedIn
             </a>
+            <a className={styles.secondaryAction} href="/documents/Yasin_Dehfouli_CV.pdf" download>
+              <span aria-hidden="true">↓</span> CV
+            </a>
           </div>
           <dl className={styles.heroStatus} aria-label="Site status">
             <div>

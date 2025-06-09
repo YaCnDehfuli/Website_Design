@@ -64,6 +64,9 @@ export default function AboutPage() {
                 {link.label} <span aria-hidden="true">↗</span>
               </a>
             ))}
+            <a href="/documents/Yasin_Dehfouli_CV.pdf" download>
+              Download CV <span aria-hidden="true">↓</span>
+            </a>
           </div>
         </div>
       </section>
