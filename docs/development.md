@@ -35,19 +35,22 @@ before starting another one.
 
 ## Available commands
 
-| Command                      | Purpose                                                   |
-| ---------------------------- | --------------------------------------------------------- |
-| `corepack pnpm dev`          | Start the development server                              |
-| `corepack pnpm build`        | Create a production build and run Next.js type validation |
-| `corepack pnpm start`        | Serve an existing production build                        |
-| `corepack pnpm lint`         | Run ESLint across the repository                          |
-| `corepack pnpm typecheck`    | Run TypeScript without emitting files                     |
-| `corepack pnpm format`       | Apply Prettier formatting                                 |
-| `corepack pnpm format:check` | Verify formatting without rewriting files                 |
-| `corepack pnpm db:generate`  | Generate a reviewed SQL migration from the schema         |
-| `corepack pnpm db:migrate`   | Apply committed migrations with the direct database URL   |
-| `corepack pnpm db:seed`      | Upsert deterministic local portfolio examples             |
-| `corepack pnpm db:studio`    | Inspect local data through Drizzle Studio                 |
+| Command                          | Purpose                                                   |
+| -------------------------------- | --------------------------------------------------------- |
+| `corepack pnpm dev`              | Start the development server                              |
+| `corepack pnpm build`            | Create a production build and run Next.js type validation |
+| `corepack pnpm start`            | Serve an existing production build                        |
+| `corepack pnpm test`             | Run fast, database-independent Vitest tests               |
+| `corepack pnpm test:watch`       | Run Vitest in local watch mode                            |
+| `corepack pnpm test:integration` | Run PostgreSQL repository integration tests               |
+| `corepack pnpm lint`             | Run ESLint across the repository                          |
+| `corepack pnpm typecheck`        | Run TypeScript without emitting files                     |
+| `corepack pnpm format`           | Apply Prettier formatting                                 |
+| `corepack pnpm format:check`     | Verify formatting without rewriting files                 |
+| `corepack pnpm db:generate`      | Generate a reviewed SQL migration from the schema         |
+| `corepack pnpm db:migrate`       | Apply committed migrations with the direct database URL   |
+| `corepack pnpm db:seed`          | Upsert deterministic local portfolio examples             |
+| `corepack pnpm db:studio`        | Inspect local data through Drizzle Studio                 |
 
 ## Quality gate
 
@@ -63,6 +66,16 @@ corepack pnpm build
 
 Feature-specific Vitest, PostgreSQL integration, and Playwright commands join this gate as their
 milestones are implemented.
+
+PostgreSQL integration tests require the local Compose service, current migrations, and deterministic
+seed data. They reject non-local database hosts and remove only records created by the test:
+
+```bash
+docker compose up -d postgres
+corepack pnpm db:migrate
+corepack pnpm db:seed
+corepack pnpm test:integration
+```
 
 ## Commit workflow
 

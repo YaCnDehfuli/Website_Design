@@ -15,6 +15,7 @@
     "db:studio": "drizzle-kit studio",
     "start": "next start",
     "test": "vitest run",
+    "test:integration": "vitest run --config vitest.integration.config.ts",
     "test:watch": "vitest",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
