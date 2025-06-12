@@ -41,6 +41,7 @@ before starting another one.
 | `corepack pnpm build`            | Create a production build and run Next.js type validation |
 | `corepack pnpm start`            | Serve an existing production build                        |
 | `corepack pnpm test`             | Run fast, database-independent Vitest tests               |
+| `corepack pnpm test:e2e`         | Run Playwright against an existing production build       |
 | `corepack pnpm test:watch`       | Run Vitest in local watch mode                            |
 | `corepack pnpm test:integration` | Run PostgreSQL repository integration tests               |
 | `corepack pnpm lint`             | Run ESLint across the repository                          |

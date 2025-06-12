@@ -15,6 +15,7 @@
     "db:studio": "drizzle-kit studio",
     "start": "next start",
     "test": "vitest run",
+    "test:e2e": "playwright test",
     "test:integration": "vitest run --config vitest.integration.config.ts",
     "test:watch": "vitest",
     "lint": "eslint .",
@@ -33,6 +34,7 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@playwright/test": "^1.61.1",
     "@types/node": "^24",
     "@types/react": "^19",
     "@types/react-dom": "^19",
