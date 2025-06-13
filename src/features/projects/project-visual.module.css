@@ -32,7 +32,9 @@
 .compact figcaption a {
   color: var(--color-cyan);
   overflow-wrap: anywhere;
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.16em;
 }
 
 .compact {
