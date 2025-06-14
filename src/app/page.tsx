@@ -6,10 +6,12 @@ import { ProjectList } from "@/features/projects/project-list";
 import { getFeaturedProjects } from "@/features/projects/queries";
 import { PublicationList } from "@/features/publications/publication-list";
 import { getRecentPublications } from "@/features/publications/queries";
+import { site } from "@/lib/site";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: "Home",
+  title: site.title,
+  description: site.description,
 };
 
 export const dynamic = "force-dynamic";
