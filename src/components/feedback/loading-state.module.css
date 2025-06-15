@@ -1,0 +1,50 @@
+.state {
+  display: grid;
+  min-height: min(26rem, 55vh);
+  align-content: center;
+  justify-items: start;
+  gap: var(--space-5);
+}
+
+.state p {
+  color: var(--color-cyan);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.bar {
+  overflow: hidden;
+  width: min(28rem, 100%);
+  height: 0.3rem;
+  border-radius: 100vw;
+  background: var(--color-line);
+}
+
+.bar::after {
+  display: block;
+  width: 35%;
+  height: 100%;
+  background: var(--color-lime);
+  box-shadow: 0 0 1rem var(--color-lime);
+  content: "";
+  animation: scan 1.1s ease-in-out infinite alternate;
+}
+
+@keyframes scan {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(280%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bar::after {
+    width: 100%;
+    animation: none;
+  }
+}

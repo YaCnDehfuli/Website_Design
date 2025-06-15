@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
+import { LoadingState } from "@/components/feedback/loading-state";
 import { PublicationList } from "@/features/publications/publication-list";
 import { getPublishedPublications } from "@/features/publications/queries";
 import styles from "./page.module.css";
@@ -10,7 +12,15 @@ export const metadata: Metadata = {
 
 export const dynamic = "force-dynamic";
 
-export default async function PublicationsPage() {
+export default function PublicationsPage() {
+  return (
+    <Suspense fallback={<LoadingState label="Resolving publication records…" />}>
+      <PublicationsIndex />
+    </Suspense>
+  );
+}
+
+async function PublicationsIndex() {
   const publications = await getPublishedPublications();
 
   return (

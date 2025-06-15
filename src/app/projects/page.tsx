@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
+import { LoadingState } from "@/components/feedback/loading-state";
 import { ProjectList } from "@/features/projects/project-list";
 import { getPublishedProjects } from "@/features/projects/queries";
 import styles from "./page.module.css";
@@ -10,7 +12,15 @@ export const metadata: Metadata = {
 
 export const dynamic = "force-dynamic";
 
-export default async function ProjectsPage() {
+export default function ProjectsPage() {
+  return (
+    <Suspense fallback={<LoadingState label="Indexing project records…" />}>
+      <ProjectsIndex />
+    </Suspense>
+  );
+}
+
+async function ProjectsIndex() {
   const projects = await getPublishedProjects();
 
   return (

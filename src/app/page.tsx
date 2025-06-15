@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
+import { LoadingState } from "@/components/feedback/loading-state";
 import { SecurityOrbit } from "@/components/visuals/security-orbit";
 import { profile } from "@/content/profile";
 import { ProjectList } from "@/features/projects/project-list";
@@ -16,7 +18,15 @@ export const metadata: Metadata = {
 
 export const dynamic = "force-dynamic";
 
-export default async function Home() {
+export default function Home() {
+  return (
+    <Suspense fallback={<LoadingState label="Tracing the portfolio…" />}>
+      <HomeContent />
+    </Suspense>
+  );
+}
+
+async function HomeContent() {
   const [featuredProjects, recentPublications] = await Promise.all([
     getFeaturedProjects(3),
     getRecentPublications(2),
