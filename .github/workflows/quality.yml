@@ -1,0 +1,96 @@
+name: Quality
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Test and build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      DATABASE_URL: postgres://personal_website:local_password@127.0.0.1:5432/personal_website
+      MIGRATION_DATABASE_URL: postgres://personal_website:local_password@127.0.0.1:5432/personal_website
+      SITE_URL: http://localhost:3000
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_DB: personal_website
+          POSTGRES_PASSWORD: local_password
+          POSTGRES_USER: personal_website
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U personal_website -d personal_website"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          package-manager-cache: false
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check formatting
+        run: pnpm format:check
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Type-check
+        run: pnpm typecheck
+
+      - name: Run unit tests
+        run: pnpm test
+
+      - name: Apply database migrations
+        run: pnpm db:migrate
+
+      - name: Seed the test database
+        run: pnpm db:seed
+
+      - name: Run database integration tests
+        run: pnpm test:integration
+
+      - name: Build the production application
+        run: pnpm build
+
+      - name: Install Playwright browser
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Run browser tests
+        run: pnpm test:e2e
+
+      - name: Upload Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          if-no-files-found: ignore
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
