@@ -62,11 +62,17 @@ corepack pnpm install --frozen-lockfile
 corepack pnpm format:check
 corepack pnpm lint
 corepack pnpm typecheck
+corepack pnpm test
+corepack pnpm db:migrate
+corepack pnpm db:seed
+corepack pnpm test:integration
 corepack pnpm build
+corepack pnpm exec playwright install chromium
+corepack pnpm test:e2e
 ```
 
-Feature-specific Vitest, PostgreSQL integration, and Playwright commands join this gate as their
-milestones are implemented.
+The database commands require the local Compose service and `.env.local`. Playwright requires its
+Chromium binary once per machine; the install command is safe to repeat after dependency upgrades.
 
 PostgreSQL integration tests require the local Compose service, current migrations, and deterministic
 seed data. They reject non-local database hosts and remove only records created by the test:
@@ -105,4 +111,5 @@ For each planned commit:
 6. Create the commit only after approval.
 7. Verify author date, committer date, commit message, and clean status.
 
-Pushing and deployment are separate actions and require explicit authorization.
+Pushing and deployment are separate actions and require explicit authorization. Follow the
+[managed deployment and release runbook](deployment.md) when a release is approved.

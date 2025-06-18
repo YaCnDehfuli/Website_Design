@@ -1,8 +1,8 @@
 # Dated commit plan
 
-The existing repository history begins on May 15, 2025. Remaining commits are assigned one per
-calendar day at 18:00 in the `America/Toronto` timezone. Git history, rather than this document, is
-authoritative for the message and time ultimately approved by the repository owner.
+The repository history begins on May 15, 2025. Planned work is assigned at 18:00 in the
+`America/Toronto` timezone, with narrowly scoped corrective commits recorded at their actual time.
+Git history remains authoritative for the final message and timestamp.
 
 | Date    | Planned commit                                                   |
 | ------- | ---------------------------------------------------------------- |
@@ -27,12 +27,19 @@ authoritative for the message and time ultimately approved by the repository own
 | June 2  | `feat(publications): add publication detail pages`               |
 | June 3  | `feat(contact): validate and persist contact submissions`        |
 | June 4  | `feat(contact): integrate accessible contact form feedback`      |
-| June 5  | `test: add Vitest foundation and domain tests`                   |
-| June 6  | `test(db): add PostgreSQL repository integration tests`          |
-| June 7  | `test(e2e): add route and navigation coverage`                   |
-| June 8  | `test(e2e): cover contact and accessibility flows`               |
-| June 9  | `feat(release): add metadata and discoverability`                |
-| June 10 | `feat(release): add resilient production states and headers`     |
-| June 11 | `ci: add GitHub Actions quality workflow`                        |
-| June 12 | `ci: add protected production migration workflow`                |
-| June 13 | `docs: add managed deployment and release runbook`               |
+| June 4  | `fix(db): load local env and use portable seed entrypoint`       |
+| June 5  | `feat(content): extend portfolio metadata schema`                |
+| June 6  | `feat(content): add verified profile and career history`         |
+| June 7  | `feat(content): seed verified projects and publications`         |
+| June 8  | `feat(home): surface featured work and research`                 |
+| June 9  | `feat(content): add portfolio assets and downloadable CV`        |
+| June 9  | `chore(content): normalize imported CV source`                   |
+| June 10 | `test: add Vitest foundation and domain tests`                   |
+| June 11 | `test(db): add PostgreSQL repository integration tests`          |
+| June 12 | `test(e2e): add route and navigation coverage`                   |
+| June 13 | `test(e2e): cover contact and accessibility flows`               |
+| June 14 | `feat(release): add metadata and discoverability`                |
+| June 15 | `feat(release): add resilient production states and headers`     |
+| June 16 | `ci: add GitHub Actions quality workflow`                        |
+| June 17 | `ci: add protected production migration workflow`                |
+| June 18 | `docs: add managed deployment and release runbook`               |
