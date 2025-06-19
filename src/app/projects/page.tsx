@@ -7,7 +7,8 @@ import styles from "./page.module.css";
 
 export const metadata: Metadata = {
   title: "Projects",
-  description: "Security research, memory-forensics tooling, and applied-AI case studies.",
+  description:
+    "Security research, memory-forensics software, and applied machine-learning projects.",
 };
 
 export const dynamic = "force-dynamic";
@@ -28,11 +29,11 @@ async function ProjectsIndex() {
       <header className={styles.intro}>
         <div>
           <p className="section-kicker">/projects/index</p>
-          <h1>Evidence-first systems.</h1>
+          <h1>Projects</h1>
         </div>
         <p className="lede">
-          Research and software documented beyond the headline result: the evidence pipeline,
-          technical choices, evaluation, and reliability boundaries.
+          Selected work in memory forensics, malware analysis, and applied machine learning. Each
+          project documents the problem, implementation, evaluation, and known limitations.
         </p>
       </header>
       <div className={styles.status}>

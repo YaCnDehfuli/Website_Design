@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     "DFIR",
     "malware analysis",
     "detection engineering",
-    "applied AI",
+    "applied machine learning",
   ],
   openGraph: {
     type: "website",

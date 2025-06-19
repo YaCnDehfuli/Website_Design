@@ -3,10 +3,10 @@ import { expect, test } from "@playwright/test";
 test("publishes site metadata and a share image", async ({ page, request }) => {
   await page.goto("/");
 
-  await expect(page).toHaveTitle(/Yasin Dehfouli · Security Engineering and Memory Forensics/);
+  await expect(page).toHaveTitle(/Yasin Dehfouli · Cybersecurity Engineer/);
   await expect(page.locator('meta[name="description"]')).toHaveAttribute(
     "content",
-    /volatile-memory evidence/,
+    /detection engineering/,
   );
   await expect(page.locator('meta[property="og:image"]')).toHaveAttribute(
     "content",

@@ -1,12 +1,12 @@
 import { expect, test } from "@playwright/test";
 
 const publicRoutes = [
-  ["/", "Hello, I'm Yasin."],
-  ["/about", "Evidence before abstraction."],
-  ["/projects", "Evidence-first systems."],
-  ["/publications", "Published investigations."],
-  ["/engineering", "How I build."],
-  ["/contact", "Open a channel."],
+  ["/", "Yasin Dehfouli."],
+  ["/about", "About Yasin Dehfouli."],
+  ["/projects", "Projects"],
+  ["/publications", "Publications"],
+  ["/engineering", "Engineering practice."],
+  ["/contact", "Contact."],
 ] as const;
 
 test.describe("public routes", () => {

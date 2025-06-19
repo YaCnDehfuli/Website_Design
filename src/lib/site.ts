@@ -4,7 +4,7 @@ import { env } from "./env";
 
 export const site = {
   name: profile.name,
-  title: `${profile.name} · Security Engineering and Memory Forensics`,
+  title: `${profile.name} · Cybersecurity Engineer`,
   description: profile.introduction,
   url: new URL(env.SITE_URL),
 } as const;

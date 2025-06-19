@@ -3,13 +3,13 @@ import type { Profile } from "./types";
 export const profile = {
   name: "Yasin Dehfouli",
   shortName: "YD",
-  professionalHeadline: "Security Engineer | Memory Forensics | Applied AI",
+  professionalHeadline: "Cybersecurity Engineer",
   location: "Toronto, Ontario",
   introduction:
-    "I build security tools and research systems that turn volatile-memory evidence into explainable detections, analyst-ready artifacts, and reproducible experiments.",
+    "I work across detection engineering and defensive security operations, with research depth in memory forensics, malware analysis, and applied machine learning.",
   biography: [
-    "I am a security engineer and published researcher working across detection engineering, memory forensics, malware analysis, DFIR automation, and applied machine learning.",
-    "I focus on systems that do more than produce a prediction: they preserve evidence, expose technical decisions, and help analysts understand what happened.",
+    "I am a cybersecurity engineer with experience in detection engineering, endpoint and identity security, vulnerability management, and incident response. My operational work has included establishing controls in a startup environment, improving telemetry coverage, validating detections, and supporting investigations.",
+    "My research focuses on memory forensics and malware analysis. I develop Python tooling and reproducible data pipelines for Volatility-based analysis and have co-authored peer-reviewed work applying machine learning to malicious-process detection. I treat machine learning as an analytical method within security engineering, with emphasis on evidence, evaluation, and analyst interpretation.",
   ],
   githubUrl: "https://github.com/YaCnDehfuli",
   linkedInUrl: "https://www.linkedin.com/in/yasindehfuli/",
@@ -24,30 +24,30 @@ export const profile = {
   focusAreas: [
     {
       emoji: "🛡️",
-      title: "Memory Forensics & DFIR",
+      title: "Detection Engineering",
       description:
-        "Windows memory analysis, Volatility 3, process artifacts, VAD regions, and analyst-oriented triage.",
+        "Detection-rule development and tuning, telemetry coverage, adversary simulation, and investigation workflows.",
       signal: "cyan",
     },
     {
       emoji: "📡",
-      title: "Detection & Security Engineering",
+      title: "Defensive Security Operations",
       description:
-        "Telemetry coverage, detection rules, adversary simulations, vulnerability analysis, and incident workflows.",
+        "Endpoint and identity controls, vulnerability prioritization, incident triage, containment, and remediation validation.",
       signal: "lime",
     },
     {
       emoji: "🤖",
-      title: "Applied AI for Malware Analysis",
+      title: "Memory Forensics & Malware Analysis",
       description:
-        "Vision Transformers, graph representations, explainability, malware classification, and forensic datasets.",
+        "Windows memory artifacts, Volatility 3, VAD analysis, process evidence, and repeatable DFIR workflows.",
       signal: "violet",
     },
     {
       emoji: "🧪",
-      title: "Research Software Engineering",
+      title: "Applied ML & Research Tooling",
       description:
-        "Python tooling, reproducible experiments, structured pipelines, concurrency, testing, and technical communication.",
+        "Python research systems, forensic datasets, model evaluation, and interpretable malware-analysis methods.",
       signal: "amber",
     },
   ],

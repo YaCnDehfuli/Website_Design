@@ -2,44 +2,44 @@ export const engineeringPrinciples = [
   {
     code: "BOUNDARY_01",
     emoji: "🛡️",
-    title: "Treat every boundary as a trust decision",
+    title: "Make trust boundaries explicit",
     description:
-      "Validate input where it enters, minimize exposed surface area, and make authorization assumptions visible—even in small systems.",
+      "Validate data at system boundaries, minimize exposed surface area, and document the security assumptions relevant to each interface.",
   },
   {
     code: "SCOPE_02",
     emoji: "✂️",
-    title: "Constrain before optimizing",
+    title: "Keep scope proportional to requirements",
     description:
-      "A smaller system is easier to reason about, test, secure, and change. Complexity needs evidence before it earns a dependency.",
+      "Smaller systems are easier to reason about, test, secure, and change. Add dependencies or abstractions only when a concrete requirement justifies them.",
   },
   {
     code: "EVIDENCE_03",
     emoji: "🔬",
-    title: "Replace confidence with evidence",
+    title: "Make correctness verifiable",
     description:
-      "Types, tests, logs, and reproducible checks turn an opinion about correctness into something another person can inspect.",
+      "Use types, tests, logs, and reproducible commands to make expected behavior inspectable by someone other than the author.",
   },
   {
     code: "FAILURE_04",
     emoji: "🧯",
-    title: "Design the unhappy path",
+    title: "Design for failure",
     description:
-      "Failures should be contained, understandable, and recoverable. Error handling is part of the interface, not cleanup work.",
+      "Contain failures, return useful errors, and preserve a recovery path. Error handling is part of the interface.",
   },
 ] as const;
 
 export const verificationLayers = [
-  { label: "types", command: "tsc --noEmit", purpose: "invalid states" },
-  { label: "lint", command: "eslint .", purpose: "unsafe patterns" },
-  { label: "unit", command: "vitest run", purpose: "isolated behavior" },
-  { label: "system", command: "playwright test", purpose: "user journeys" },
+  { label: "types", command: "tsc --noEmit", purpose: "type-contract violations" },
+  { label: "lint", command: "eslint .", purpose: "static quality and safety issues" },
+  { label: "unit", command: "vitest run", purpose: "isolated behavior and edge cases" },
+  { label: "system", command: "playwright test", purpose: "critical user journeys" },
 ] as const;
 
 export const buildLoop = [
-  "State the behavior and its constraints",
-  "Map data flow and trust boundaries",
-  "Build the smallest complete path",
-  "Verify behavior and failure modes",
-  "Record decisions while context is fresh",
+  "Define the required behavior and constraints",
+  "Map data flow, assets, and trust boundaries",
+  "Implement the smallest complete path",
+  "Verify expected behavior and failure modes",
+  "Record decisions and known limitations",
 ] as const;

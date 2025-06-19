@@ -28,11 +28,11 @@ async function PublicationsIndex() {
       <header className={styles.intro}>
         <div>
           <p className="section-kicker">/publications/archive</p>
-          <h1>Published investigations.</h1>
+          <h1>Publications</h1>
         </div>
         <p className="lede">
-          Peer-reviewed work on volatile-memory evidence, explainable malware detection, forensic
-          datasets, and reproducible evaluation.
+          Peer-reviewed research in volatile-memory forensics and explainable malware detection,
+          including forensic datasets and reproducible evaluation.
         </p>
       </header>
       <div className={styles.archiveBar}>

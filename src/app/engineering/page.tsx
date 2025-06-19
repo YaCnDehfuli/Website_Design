@@ -3,8 +3,9 @@ import { buildLoop, engineeringPrinciples, verificationLayers } from "@/content/
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: "Engineering Lab",
-  description: "The constraints, security posture, and verification practices behind the work.",
+  title: "Engineering",
+  description:
+    "Engineering principles, threat-modeling questions, and verification practices used in this project.",
 };
 
 export default function EngineeringPage() {
@@ -13,11 +14,11 @@ export default function EngineeringPage() {
       <header className={styles.intro}>
         <div>
           <p className="section-kicker">/engineering/lab-notes</p>
-          <h1>How I build.</h1>
+          <h1>Engineering practice.</h1>
         </div>
         <p className="lede">
-          Engineering is the practice of making trade-offs legible. These are the working rules I
-          use to keep software understandable, testable, and appropriately defensive.
+          The principles, threat-modeling questions, and verification practices used to keep this
+          site understandable, testable, and proportionate to risk.
         </p>
       </header>
 
@@ -32,10 +33,10 @@ export default function EngineeringPage() {
           </div>
           <div>
             <p className="section-kicker">default posture</p>
-            <h2 id="threat-title">Useful software is not automatically trustworthy.</h2>
+            <h2 id="threat-title">Threat modeling starts with assets and boundaries.</h2>
             <p>
-              Before adding controls, identify what matters, who can reach it, how it could fail,
-              and which mitigations are proportional to the actual risk.
+              Identify the assets, actors, trust boundaries, and failure modes before choosing
+              controls. Mitigations should be proportionate to the risks they address.
             </p>
           </div>
         </div>
@@ -58,7 +59,7 @@ export default function EngineeringPage() {
       <section className={styles.principles} aria-labelledby="principles-title">
         <div className={styles.sectionHeading}>
           <p className="section-kicker">01 / working principles</p>
-          <h2 id="principles-title">Rules with a reason</h2>
+          <h2 id="principles-title">Engineering principles</h2>
         </div>
         <div className={styles.principleGrid}>
           {engineeringPrinciples.map((principle) => (
@@ -77,10 +78,10 @@ export default function EngineeringPage() {
       <section className={styles.process} aria-labelledby="process-title">
         <div className={styles.processCopy}>
           <p className="section-kicker">02 / build loop</p>
-          <h2 id="process-title">From question to evidence</h2>
+          <h2 id="process-title">Development process</h2>
           <p>
-            The loop is intentionally short. Each pass should leave the system easier to inspect
-            than it was before.
+            Each pass defines constraints, implements a complete path, verifies expected and failure
+            behavior, and records the resulting decisions.
           </p>
         </div>
         <ol className={styles.loop}>
@@ -96,7 +97,7 @@ export default function EngineeringPage() {
       <section className={styles.verification} aria-labelledby="verification-title">
         <div className={styles.sectionHeading}>
           <p className="section-kicker">03 / verification stack</p>
-          <h2 id="verification-title">Different checks catch different failures.</h2>
+          <h2 id="verification-title">Verification layers</h2>
         </div>
         <div className={styles.pipeline}>
           {verificationLayers.map((layer, index) => (
@@ -109,8 +110,8 @@ export default function EngineeringPage() {
           ))}
         </div>
         <p className={styles.note}>
-          <span>NOTE:</span> A green pipeline is supporting evidence, not proof that a system is
-          secure.
+          <span>NOTE:</span> Passing checks support confidence in defined behavior; they do not
+          establish that a system is secure.
         </p>
       </section>
     </div>

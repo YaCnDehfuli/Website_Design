@@ -14,10 +14,7 @@ export default function AboutPage() {
     <div className={styles.page}>
       <header className={styles.intro}>
         <p className="section-kicker">/about/whoami</p>
-        <h1>
-          Evidence before
-          <br /> abstraction.
-        </h1>
+        <h1>About Yasin Dehfouli.</h1>
         <p className="lede">{profile.introduction}</p>
       </header>
 
@@ -54,7 +51,7 @@ export default function AboutPage() {
 
         <div className={styles.biography}>
           <p className="section-kicker">00 / profile</p>
-          <h2 id="profile-title">Security engineering meets research.</h2>
+          <h2 id="profile-title">Professional and research background</h2>
           {profile.biography.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}

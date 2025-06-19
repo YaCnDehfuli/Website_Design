@@ -7,13 +7,13 @@ export const experience: readonly ExperienceEntry[] = [
     startDate: "March 2025",
     endDate: "April 2026",
     summary:
-      "Worked across detection engineering, security telemetry, vulnerability management, incident response, endpoint security, identity security, and practical validation of defensive controls.",
+      "Built and operated Hadeth’s first security function across endpoint and identity controls, detection engineering, vulnerability management, and incident response.",
     highlights: [
-      "Expanded managed-device coverage from 24% to 95%, reaching 20 of 21 devices.",
-      "Developed 9 detection rules and validated defensive coverage through 23 adversary simulations.",
-      "Reduced recurring alert volume by 38% through rule and workflow refinement.",
-      "Documented and triaged 42 vulnerability findings.",
-      "Supported investigation and response activities across 8 security incidents.",
+      "Enrolled 20 of 21 devices in Intune and Defender and enforced encryption, firewall, antimalware, and compliance baselines, increasing managed-device coverage from 24% to 95%.",
+      "Developed 9 Wazuh rules and hunting queries across Windows authentication, Sysmon, PowerShell, and agent-health telemetry; validated them with 23 ATT&CK-aligned simulations.",
+      "Reduced recurring non-actionable alerts by 38% over two months through rule tuning and workflow refinement.",
+      "Triaged 42 vulnerability findings by exploitability, exposure, and business impact, and verified closure of 7 of 8 high-severity issues.",
+      "Supported investigation and response across 8 phishing, suspicious-sign-in, malware, and credential-exposure cases by correlating endpoint, identity, and email telemetry.",
     ],
   },
   {
@@ -22,12 +22,12 @@ export const experience: readonly ExperienceEntry[] = [
     startDate: "September 2023",
     endDate: "November 2025",
     summary:
-      "Conducted research at the intersection of memory forensics, malware analysis, applied machine learning, forensic datasets, and explainable detection.",
+      "Conducted applied research in memory forensics and malware detection, including forensic dataset construction, machine-learning evaluation, and analyst-oriented attribution.",
     highlights: [
-      "Developed VADViT, a Vision Transformer framework for malicious-process detection and explainable VAD-region attribution.",
+      "Developed VADViT, a Vision Transformer framework that achieved 99% binary-classification accuracy and 92% macro-averaged F1 for multiclass malicious-process detection.",
       "Designed memory-extraction and preprocessing pipelines using Volatility 3, Python, multiprocessing, entropy analysis, and Markov byte-transition representations.",
       "Contributed to the BCCC-MalMem-SnapLog-2025 data-generation and evidence-capture workflow.",
-      "Co-authored peer-reviewed research in ACM Computing Surveys and the Journal of Information Security and Applications.",
+      "Co-authored two peer-reviewed papers published in ACM Computing Surveys and the Journal of Information Security and Applications.",
     ],
   },
   {
@@ -36,7 +36,7 @@ export const experience: readonly ExperienceEntry[] = [
     startDate: "May 2025",
     endDate: "September 2025",
     summary:
-      "Developed VolMemLyzer, a Python framework for repeatable memory-forensics extraction, structured feature generation, and analyst-oriented triage.",
+      "Developed VolMemLyzer, a Python framework for repeatable Volatility 3 execution, structured feature extraction, and analyst-oriented triage.",
     highlights: [
       "Developed modular runner, pipeline, registry, extraction, conversion, and analysis components over Volatility 3.",
       "Implemented cached and parallel plugin execution with timeout handling, deterministic artifact naming, and structured failure reporting.",
@@ -50,10 +50,10 @@ export const experience: readonly ExperienceEntry[] = [
     startDate: "September 2023",
     endDate: "April 2026",
     summary:
-      "Supported undergraduate teaching across security, artificial intelligence, Linux tooling, C, assembly, Bash, and logic programming.",
+      "Supported practical undergraduate instruction in security, Linux and systems programming, and artificial intelligence and logic programming.",
     highlights: [
-      "Taught foundational defensive-security topics including RSA, hashing, network security, and malware.",
-      "Supported practical instruction across Linux permissions, Bash scripting, C, assembly, artificial intelligence, and logic inference.",
+      "Taught defensive-security fundamentals including RSA, hashing, network security, and malware.",
+      "Supported labs and coursework in Linux permissions, Bash, C, assembly, machine learning, and logic programming.",
     ],
     assignments: [
       {
@@ -100,12 +100,12 @@ export const experience: readonly ExperienceEntry[] = [
     startDate: "April 2021",
     endDate: "August 2022",
     summary:
-      "Developed smart-home and voice-assistant software connecting speech recognition, command interpretation, Python services, Raspberry Pi systems, Arduino devices, and embedded communication.",
+      "Developed voice-assistant and smart-home software spanning speech recognition, command interpretation, Python services, Raspberry Pi systems, Arduino devices, and embedded communication.",
     highlights: [
       "Delivered more than 10 speech-to-command and smart-home features.",
       "Reduced misrouted commands by 21%.",
-      "Developed speech-to-command workflows involving recognition, interpretation, intent or entity processing, and user feedback.",
-      "Worked across Python, C/C++, Raspberry Pi, Arduino, I2C communication, and infrared remote-control workflows.",
+      "Implemented workflows from speech recognition and intent processing through device execution and user feedback.",
+      "Integrated Python and C/C++ services with Raspberry Pi, Arduino, I2C, and infrared-control workflows.",
     ],
   },
 ];

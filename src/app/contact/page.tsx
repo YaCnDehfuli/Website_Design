@@ -5,7 +5,7 @@ import styles from "./page.module.css";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: `Contact ${profile.name} about software, security, AI, or shared technical interests.`,
+  description: `Contact ${profile.name} regarding cybersecurity engineering roles, research collaboration, or technical questions.`,
 };
 
 export default function ContactPage() {
@@ -13,12 +13,10 @@ export default function ContactPage() {
     <div className={styles.page}>
       <header className={styles.intro}>
         <p className="section-kicker">/contact/init</p>
-        <h1>
-          Open a <span>channel.</span>
-        </h1>
+        <h1>Contact.</h1>
         <p className="lede">
-          Have a question, a thoughtful critique, or an interesting system to discuss? Send the
-          useful context and let&apos;s start there.
+          For roles, research collaboration, or technical questions, include the relevant context,
+          objective, and any time constraints.
         </p>
       </header>
 
@@ -85,21 +83,21 @@ export default function ContactPage() {
               <span aria-hidden="true">01</span>
               <p>
                 <strong>Context</strong>
-                What are you working on or thinking about?
+                Briefly describe the organization, system, or research topic.
               </p>
             </li>
             <li>
               <span aria-hidden="true">02</span>
               <p>
                 <strong>Question</strong>
-                What would you like to explore together?
+                What decision, problem, or outcome would you like to discuss?
               </p>
             </li>
             <li>
               <span aria-hidden="true">03</span>
               <p>
                 <strong>Constraints</strong>
-                Is there a deadline, boundary, or useful link?
+                Include any relevant timeline, access boundary, or supporting link.
               </p>
             </li>
           </ul>
@@ -111,14 +109,14 @@ export default function ContactPage() {
       <section className={styles.channels} aria-labelledby="channels-title">
         <div>
           <p className="section-kicker">01 / available routes</p>
-          <h2 id="channels-title">Choose the right protocol</h2>
+          <h2 id="channels-title">Contact routes</h2>
         </div>
         <dl>
           <div>
             <dt>▶ Form</dt>
             <dd>
               <a href="#message-title">Message buffer</a>
-              <span>primary route · stored securely for response</span>
+              <span>primary contact route</span>
             </dd>
           </div>
           <div>
