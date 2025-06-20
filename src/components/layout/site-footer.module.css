@@ -14,8 +14,14 @@
   font-size: 0.7rem;
 }
 
-.inner p:first-child span {
-  color: var(--color-cyan);
+.inner p:first-child {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.inner p:first-child svg {
+  color: var(--color-operations);
 }
 
 .command span {

@@ -43,7 +43,7 @@ test.describe("primary navigation", () => {
       "page",
     );
 
-    await navigation.getByRole("link", { name: /writing/ }).click();
+    await navigation.getByRole("link", { name: /publications/ }).click();
     await expect(page).toHaveURL(/\/publications$/);
   });
 

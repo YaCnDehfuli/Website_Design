@@ -10,6 +10,12 @@
   --color-lime: #c8ff62;
   --color-violet: #a78bfa;
   --color-amber: #ffc56d;
+  --color-error: #ff7f91;
+  --color-operations: var(--color-cyan);
+  --color-research: var(--color-violet);
+  --color-finding: var(--color-amber);
+  --color-verified: var(--color-lime);
+  --color-focus: var(--color-lime);
   --font-sans: Inter, "Avenir Next", "Segoe UI", Helvetica, Arial, sans-serif;
   --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   --space-1: 0.25rem;
@@ -47,8 +53,8 @@ body {
   background-image:
     linear-gradient(rgb(99 242 208 / 2.5%) 1px, transparent 1px),
     linear-gradient(90deg, rgb(99 242 208 / 2.5%) 1px, transparent 1px),
-    radial-gradient(circle at 80% 8%, rgb(167 139 250 / 14%), transparent 30rem),
-    radial-gradient(circle at 10% 45%, rgb(99 242 208 / 8%), transparent 26rem);
+    radial-gradient(circle at 80% 8%, rgb(167 139 250 / 9%), transparent 30rem),
+    radial-gradient(circle at 10% 45%, rgb(99 242 208 / 5%), transparent 26rem);
   background-size:
     2.5rem 2.5rem,
     2.5rem 2.5rem,
@@ -85,18 +91,18 @@ h1,
 h2,
 h3 {
   margin: 0;
-  font-weight: 680;
-  letter-spacing: -0.035em;
+  font-weight: 660;
+  letter-spacing: -0.028em;
   line-height: 1.08;
   text-wrap: balance;
 }
 
 h1 {
-  font-size: clamp(2.7rem, 8vw, 6.6rem);
+  font-size: clamp(2.65rem, 7vw, 5.2rem);
 }
 
 h2 {
-  font-size: clamp(1.9rem, 4.5vw, 3.2rem);
+  font-size: clamp(1.85rem, 4vw, 3rem);
 }
 
 h3 {
@@ -108,7 +114,7 @@ p {
 }
 
 :focus-visible {
-  outline: 0.18rem solid var(--color-lime);
+  outline: 0.18rem solid var(--color-focus);
   outline-offset: 0.25rem;
 }
 
@@ -161,9 +167,9 @@ main {
 .section-kicker::before {
   width: 0.5rem;
   height: 0.5rem;
-  border-radius: 50%;
-  background: currentColor;
-  box-shadow: 0 0 1rem currentColor;
+  border: 1px solid currentColor;
+  border-radius: 0.08rem;
+  background: transparent;
   content: "";
 }
 
