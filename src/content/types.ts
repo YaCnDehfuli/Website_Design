@@ -5,7 +5,6 @@ export type NavigationItem = Readonly<{
 }>;
 
 export type FocusArea = Readonly<{
-  emoji: string;
   title: string;
   description: string;
   signal: "cyan" | "lime" | "violet" | "amber";

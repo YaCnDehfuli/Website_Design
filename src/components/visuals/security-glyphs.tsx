@@ -18,6 +18,13 @@ export const securityGlyphNames = [
 
 export type SecurityGlyphName = (typeof securityGlyphNames)[number];
 
+export const focusAreaGlyphNames = [
+  "rule-match",
+  "endpoint-identity",
+  "vad-region",
+  "attention-rank",
+] as const satisfies readonly SecurityGlyphName[];
+
 type SecurityGlyphProps = Omit<SVGProps<SVGSVGElement>, "children"> &
   Readonly<{
     name: SecurityGlyphName;

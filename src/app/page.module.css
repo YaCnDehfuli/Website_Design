@@ -191,8 +191,8 @@
   text-transform: uppercase;
 }
 
-.emoji {
-  font-size: 1.5rem;
+.focusGlyph {
+  flex: 0 0 auto;
 }
 
 .focusCard h3 {

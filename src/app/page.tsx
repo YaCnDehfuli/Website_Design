@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
 import { LoadingState } from "@/components/feedback/loading-state";
-import { SecurityOrbit } from "@/components/visuals/security-orbit";
+import { ProfilePortrait } from "@/components/visuals/profile-portrait";
+import { focusAreaGlyphNames, SecurityGlyph } from "@/components/visuals/security-glyphs";
 import { profile } from "@/content/profile";
 import { ProjectList } from "@/features/projects/project-list";
 import { getFeaturedProjects } from "@/features/projects/queries";
@@ -77,7 +78,7 @@ async function HomeContent() {
             </div>
           </dl>
         </div>
-        <SecurityOrbit />
+        <ProfilePortrait />
       </section>
 
       <section className={styles.focus} aria-labelledby="focus-title">
@@ -95,9 +96,12 @@ async function HomeContent() {
           {profile.focusAreas.map((area, index) => (
             <article className={styles.focusCard} data-signal={area.signal} key={area.title}>
               <div className={styles.focusMeta}>
-                <span className={styles.emoji} aria-hidden="true">
-                  {area.emoji}
-                </span>
+                <SecurityGlyph
+                  className={styles.focusGlyph}
+                  name={focusAreaGlyphNames[index] ?? "evidence-record"}
+                  width="28"
+                  height="28"
+                />
                 <span>module_{String(index + 1).padStart(2, "0")}</span>
               </div>
               <h3>{area.title}</h3>

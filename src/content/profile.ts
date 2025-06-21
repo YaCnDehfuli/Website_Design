@@ -23,32 +23,28 @@ export const profile = {
   ],
   focusAreas: [
     {
-      emoji: "🛡️",
       title: "Detection Engineering",
       description:
         "Detection-rule development and tuning, telemetry coverage, adversary simulation, and investigation workflows.",
       signal: "cyan",
     },
     {
-      emoji: "📡",
       title: "Defensive Security Operations",
       description:
         "Endpoint and identity controls, vulnerability prioritization, incident triage, containment, and remediation validation.",
-      signal: "lime",
+      signal: "cyan",
     },
     {
-      emoji: "🤖",
       title: "Memory Forensics & Malware Analysis",
       description:
         "Windows memory artifacts, Volatility 3, VAD analysis, process evidence, and repeatable DFIR workflows.",
       signal: "violet",
     },
     {
-      emoji: "🧪",
       title: "Applied ML & Research Tooling",
       description:
         "Python research systems, forensic datasets, model evaluation, and interpretable malware-analysis methods.",
-      signal: "amber",
+      signal: "violet",
     },
   ],
 } as const satisfies Profile;

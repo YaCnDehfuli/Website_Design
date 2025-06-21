@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import { SecurityEvidenceMap } from "@/components/visuals/security-evidence-map";
+import { focusAreaGlyphNames, SecurityGlyph } from "@/components/visuals/security-glyphs";
 import { education, experience } from "@/content/career";
 import { profile } from "@/content/profile";
 import styles from "./page.module.css";
@@ -24,15 +25,7 @@ export default function AboutPage() {
             <span>IDENTITY.record</span>
             <span>{profile.location}</span>
           </div>
-          <div className={styles.avatar}>
-            <Image
-              src={profile.image.src}
-              alt={profile.image.alt}
-              fill
-              priority
-              sizes="(max-width: 48rem) 14rem, 18rem"
-            />
-          </div>
+          <SecurityEvidenceMap />
           <dl>
             <div>
               <dt>name</dt>
@@ -77,9 +70,12 @@ export default function AboutPage() {
           {profile.focusAreas.map((area, index) => (
             <article key={area.title}>
               <span className={styles.interestIndex}>{String(index + 1).padStart(2, "0")}</span>
-              <span className={styles.interestEmoji} aria-hidden="true">
-                {area.emoji}
-              </span>
+              <SecurityGlyph
+                className={styles.interestGlyph}
+                name={focusAreaGlyphNames[index] ?? "evidence-record"}
+                width="28"
+                height="28"
+              />
               <div>
                 <h3>{area.title}</h3>
                 <p>{area.description}</p>
