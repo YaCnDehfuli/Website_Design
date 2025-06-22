@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { SecurityGlyph } from "@/components/visuals/security-glyphs";
+import { getPublicationGlyph } from "./publication-glyph";
 import type { PublicationSummary } from "./queries";
 import styles from "./publication-list.module.css";
 
@@ -25,8 +27,8 @@ export function PublicationList({ publications }: PublicationListProps) {
         <li key={publication.id}>
           <article>
             <div className={styles.index}>
+              <SecurityGlyph name={getPublicationGlyph(publication.slug)} width="25" height="25" />
               <span>{String(index + 1).padStart(2, "0")}</span>
-              <i aria-hidden="true" />
             </div>
             <div className={styles.body}>
               <div className={styles.meta}>
@@ -46,7 +48,7 @@ export function PublicationList({ publications }: PublicationListProps) {
               href={`/publications/${publication.slug}`}
               aria-label={`Read ${publication.title}`}
             >
-              <span>read_note</span>
+              <span>Read publication</span>
               <span aria-hidden="true">↗</span>
             </Link>
           </article>

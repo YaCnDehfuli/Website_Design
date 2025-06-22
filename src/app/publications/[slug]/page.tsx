@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { TrustedMarkdown } from "@/components/content/trusted-markdown";
+import { SecurityGlyph } from "@/components/visuals/security-glyphs";
+import { getPublicationGlyph } from "@/features/publications/publication-glyph";
 import { getPublishedPublicationBySlug } from "@/features/publications/queries";
 import styles from "./page.module.css";
 
@@ -32,13 +34,16 @@ export default async function PublicationPage({ params }: PublicationPageProps) 
   return (
     <article className={styles.page}>
       <Link className={styles.back} href="/publications">
-        <span aria-hidden="true">←</span> return_to_archive
+        <span aria-hidden="true">←</span> Back to publications
       </Link>
 
       <header className={styles.header}>
         <div className={styles.recordType}>
-          <span>PUBLIC_RECORD</span>
-          <span>● readable</span>
+          <span>
+            <SecurityGlyph name={getPublicationGlyph(publication.slug)} width="22" height="22" />
+            PAPER
+          </span>
+          <span>{formatLabel(publication.publicationType ?? "publication")}</span>
         </div>
         <p className="section-kicker">/publications/{publication.slug}</p>
         <h1>{publication.title}</h1>
@@ -82,7 +87,7 @@ export default async function PublicationPage({ params }: PublicationPageProps) 
       </header>
 
       <section className={styles.citation} aria-labelledby="citation-title">
-        <p id="citation-title">CITE.record</p>
+        <p id="citation-title">Citation</p>
         <cite>
           {publication.authors?.join(" and ")}. “{publication.title}.”
           {publication.venue ? ` ${publication.venue}.` : ""}
@@ -93,23 +98,17 @@ export default async function PublicationPage({ params }: PublicationPageProps) 
 
       <div className={styles.document}>
         <div className={styles.fileBar}>
-          <span>NOTE.md</span>
-          <span>utf-8 · raw html disabled</span>
+          <span>SUMMARY</span>
+          <span>method · findings · limitations</span>
         </div>
         <div className={styles.documentBody}>
-          <aside aria-label="Document line marker">
-            <span>01</span>
-            <span>02</span>
-            <span>03</span>
-            <span>04</span>
-          </aside>
           <TrustedMarkdown>{publication.body}</TrustedMarkdown>
         </div>
         {externalUrl && (
           <div className={styles.external}>
-            <span>ORIGINAL_SOURCE</span>
+            <span>Original publication</span>
             <a href={externalUrl} target="_blank" rel="noreferrer">
-              open external record <span aria-hidden="true">↗</span>
+              Open DOI record <span aria-hidden="true">↗</span>
             </a>
           </div>
         )}

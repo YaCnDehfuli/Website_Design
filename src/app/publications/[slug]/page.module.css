@@ -25,7 +25,7 @@
 
 .header h1 {
   max-width: 15ch;
-  font-size: clamp(2.6rem, 7vw, 5.3rem);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
 }
 
 .recordType {
@@ -41,7 +41,14 @@
 }
 
 .recordType span:last-child {
-  color: var(--color-lime);
+  color: var(--color-research);
+}
+
+.recordType span:first-child {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-operations);
+  gap: var(--space-2);
 }
 
 .metadata {
@@ -127,20 +134,7 @@
 }
 
 .documentBody {
-  display: grid;
-  grid-template-columns: 3.5rem minmax(0, 1fr);
-}
-
-.documentBody > aside {
-  display: grid;
-  align-content: start;
-  padding-top: clamp(2rem, 5vw, 3.5rem);
-  border-right: 1px solid var(--color-line);
-  color: rgb(145 165 163 / 40%);
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-  gap: var(--space-6);
-  text-align: center;
+  display: block;
 }
 
 .documentBody > div {
@@ -158,14 +152,6 @@
 }
 
 @media (max-width: 36rem) {
-  .documentBody {
-    grid-template-columns: 1fr;
-  }
-
-  .documentBody > aside {
-    display: none;
-  }
-
   .fileBar span:last-child {
     display: none;
   }

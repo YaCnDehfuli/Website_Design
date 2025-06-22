@@ -23,8 +23,11 @@
   font-size: 0.62rem;
 }
 
-.cardMeta span:first-child {
-  color: var(--color-cyan);
+.artifactType {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-operations);
+  gap: var(--space-2);
 }
 
 .visual {
@@ -37,51 +40,15 @@
   background-image:
     linear-gradient(rgb(99 242 208 / 5%) 1px, transparent 1px),
     linear-gradient(90deg, rgb(99 242 208 / 5%) 1px, transparent 1px),
-    radial-gradient(circle, rgb(99 242 208 / 16%), transparent 45%);
+    radial-gradient(circle, rgb(99 242 208 / 10%), transparent 45%);
   background-size:
     1.5rem 1.5rem,
     1.5rem 1.5rem,
     auto;
 }
 
-.visual i {
-  display: grid;
-  z-index: 1;
-  width: 4.5rem;
-  height: 4.5rem;
-  place-items: center;
-  border: 1px solid var(--color-cyan);
-  transform: rotate(45deg);
-  background: var(--color-bg);
-  color: var(--color-lime);
-  font-family: var(--font-mono);
-  font-size: 1rem;
-  font-style: normal;
-  box-shadow: 0 0 2rem rgb(99 242 208 / 14%);
-}
-
-.visual span {
-  position: absolute;
-  width: 0.55rem;
-  height: 0.55rem;
-  border-radius: 50%;
-  background: var(--color-violet);
-  box-shadow: 0 0 1rem var(--color-violet);
-}
-
-.visual span:nth-child(1) {
-  top: 22%;
-  left: 18%;
-}
-
-.visual span:nth-child(2) {
-  top: 30%;
-  right: 20%;
-}
-
-.visual span:nth-child(3) {
-  right: 28%;
-  bottom: 20%;
+.visual svg {
+  color: var(--color-research);
 }
 
 .cardBody {
@@ -91,18 +58,13 @@
   gap: var(--space-3);
 }
 
-.projectType {
-  color: var(--color-violet) !important;
-  font-family: var(--font-mono);
-  font-size: 0.64rem !important;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
 .cardBody p {
   color: var(--color-muted);
   font-size: 0.9rem;
+}
+
+.cardBody h2 {
+  font-size: clamp(1.45rem, 3vw, 2.15rem);
 }
 
 .cardBody ul {

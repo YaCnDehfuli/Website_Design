@@ -25,19 +25,14 @@
   position: relative;
   place-items: center;
   border-right: 1px solid var(--color-line);
-  color: var(--color-cyan);
+  color: var(--color-operations);
   font-family: var(--font-mono);
   font-size: 0.68rem;
 }
 
-.index i {
-  position: absolute;
-  bottom: -0.25rem;
-  width: 0.45rem;
-  height: 0.45rem;
-  border-radius: 50%;
-  background: var(--color-lime);
-  box-shadow: 0 0 0.8rem var(--color-lime);
+.index > span:last-child {
+  color: var(--color-muted);
+  font-size: 0.56rem;
 }
 
 .body {
@@ -65,6 +60,10 @@
   max-width: 48rem;
   color: var(--color-muted);
   font-size: 0.9rem;
+}
+
+.body h2 {
+  font-size: clamp(1.4rem, 3vw, 2.25rem);
 }
 
 .body .authors {

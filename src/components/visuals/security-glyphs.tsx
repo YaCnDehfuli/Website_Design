@@ -5,6 +5,7 @@ export const securityGlyphNames = [
   "endpoint-identity",
   "vad-region",
   "process-tree",
+  "network-flow",
   "attention-rank",
   "plugin-dag",
   "cfg-path",
@@ -133,6 +134,17 @@ function renderGlyph(name: SecurityGlyphName) {
           <rect x="21" y="23" width="8" height="5" rx="1" />
           <rect x="12" y="13" width="8" height="5" rx="1" />
           <path d="M16 8v5M16 18v2M7 20h18M7 20v3M25 20v3" />
+        </>
+      );
+    case "network-flow":
+      return (
+        <>
+          <path d="M3 7h9M3 16h9M3 25h9" />
+          <circle cx="5" cy="7" r="1.5" fill="currentColor" />
+          <circle cx="8" cy="16" r="1.5" fill="currentColor" />
+          <circle cx="5" cy="25" r="1.5" fill="currentColor" />
+          <path d="m12 7 7 9-7 9M19 16h9" />
+          <path d="m25 13 3 3-3 3" />
         </>
       );
     case "attention-rank":

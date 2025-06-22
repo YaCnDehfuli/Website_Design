@@ -34,7 +34,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   return (
     <article className={styles.page}>
       <Link className={styles.back} href="/projects">
-        <span aria-hidden="true">←</span> return_to_index
+        <span aria-hidden="true">←</span> Back to projects
       </Link>
 
       <header className={styles.header}>
@@ -43,7 +43,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         <p className="lede">{project.summary}</p>
         <ul className={styles.tags} aria-label="Technologies">
           {project.tags.map((tag) => (
-            <li key={tag.slug}>#{tag.slug}</li>
+            <li key={tag.slug}>{tag.name}</li>
           ))}
         </ul>
       </header>
@@ -60,13 +60,13 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         <section className={styles.content} aria-label="Case study">
           <div className={styles.fileBar}>
             <span>CASE_STUDY.md</span>
-            <span>trusted markdown · raw html disabled</span>
+            <span>method · evidence · results · limitations</span>
           </div>
           <TrustedMarkdown>{project.body}</TrustedMarkdown>
         </section>
 
         <aside className={styles.sidebar} aria-label="Project links and status">
-          <p className={styles.sidebarTitle}>PROJECT.record</p>
+          <p className={styles.sidebarTitle}>PROJECT RECORD</p>
           <dl>
             {project.projectType && (
               <div>
@@ -77,7 +77,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             {project.status && (
               <div>
                 <dt>status</dt>
-                <dd>● {formatLabel(project.status)}</dd>
+                <dd>{formatLabel(project.status)}</dd>
               </div>
             )}
             {project.role && (
@@ -113,12 +113,12 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             <div className={styles.externalLinks}>
               {repositoryUrl && (
                 <a href={repositoryUrl} target="_blank" rel="noreferrer">
-                  source_code <span aria-hidden="true">↗</span>
+                  Source repository <span aria-hidden="true">↗</span>
                 </a>
               )}
               {liveUrl && (
                 <a href={liveUrl} target="_blank" rel="noreferrer">
-                  live_system <span aria-hidden="true">↗</span>
+                  Related record <span aria-hidden="true">↗</span>
                 </a>
               )}
             </div>
