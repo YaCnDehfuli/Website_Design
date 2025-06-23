@@ -2,6 +2,7 @@
 
 import { useActionState, useEffect, useRef } from "react";
 import { useFormStatus } from "react-dom";
+import { SecurityGlyph } from "@/components/visuals/security-glyphs";
 import { submitContactMessage } from "./actions";
 import type { ContactFormState } from "./types";
 import styles from "./contact-form.module.css";
@@ -16,8 +17,19 @@ export function ContactForm() {
   const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
-    if (state.status === "success") formRef.current?.reset();
-  }, [state.status]);
+    if (state.status === "success") {
+      formRef.current?.reset();
+      return;
+    }
+
+    if (state.status === "error" && state.fieldErrors) {
+      const frame = requestAnimationFrame(() => {
+        formRef.current?.querySelector<HTMLElement>('[aria-invalid="true"]')?.focus();
+      });
+
+      return () => cancelAnimationFrame(frame);
+    }
+  }, [state.fieldErrors, state.status]);
 
   const nameError = state.fieldErrors?.name?.[0];
   const emailError = state.fieldErrors?.email?.[0];
@@ -26,22 +38,22 @@ export function ContactForm() {
   return (
     <section className={styles.panel} aria-labelledby="message-title">
       <div className={styles.panelBar}>
-        <span>MESSAGE_BUFFER.form</span>
-        <span>POST /contact</span>
+        <span>CONTACT_FORM</span>
+        <span>SERVER_VALIDATED</span>
       </div>
       <div className={styles.layout}>
         <div className={styles.intro}>
-          <p className="section-kicker">02 / direct transmission</p>
+          <p className="section-kicker">02 / contact form</p>
           <h2 id="message-title">Send a message</h2>
           <p>
             This form stores your name, email address, message, and submission time so I can
             respond. Do not include passwords or other secrets.
           </p>
           <div className={styles.privacyNote}>
-            <span aria-hidden="true">🔐</span>
+            <SecurityGlyph name="trust-boundary" width="28" height="28" />
             <p>
               <strong>Data boundary</strong>
-              No account, tracking identifier, or marketing subscription.
+              This form does not create an account or add a marketing subscription.
             </p>
           </div>
         </div>
@@ -76,7 +88,7 @@ export function ContactForm() {
               </p>
             ) : (
               <p className={styles.hint} id="message-hint">
-                20–5,000 characters · useful context beats formal wording
+                20–5,000 characters · include enough context to understand the request.
               </p>
             )}
           </div>
@@ -88,7 +100,13 @@ export function ContactForm() {
 
           <div className={styles.submitRow}>
             <SubmitButton />
-            <p className={styles.formStatus} data-status={state.status} aria-live="polite">
+            <p
+              className={styles.formStatus}
+              data-status={state.status}
+              role="status"
+              aria-live="polite"
+              aria-atomic="true"
+            >
               {state.message}
             </p>
           </div>
@@ -135,9 +153,8 @@ function SubmitButton() {
   const { pending } = useFormStatus();
 
   return (
-    <button type="submit" disabled={pending}>
-      <span aria-hidden="true">{pending ? "◌" : "▶"}</span>
-      {pending ? " transmitting..." : " transmit_message"}
+    <button type="submit" disabled={pending} aria-busy={pending}>
+      {pending ? "Sending…" : "Send message"}
     </button>
   );
 }

@@ -298,8 +298,8 @@
   letter-spacing: 0.08em;
 }
 
-.protocolTitle > span {
-  font-size: 1.5rem;
+.protocolTitle > svg {
+  flex: 0 0 auto;
 }
 
 .protocolTitle small {

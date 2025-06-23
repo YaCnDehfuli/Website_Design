@@ -14,8 +14,8 @@ export function PublicationList({ publications }: PublicationListProps) {
       <div className={styles.empty}>
         <span aria-hidden="true">[ ]</span>
         <p>
-          No public writing records found.
-          <small>The archive is connected and waiting for a release.</small>
+          No publication records are available.
+          <small>Published records will appear here when available.</small>
         </p>
       </div>
     );

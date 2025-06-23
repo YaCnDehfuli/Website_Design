@@ -17,7 +17,7 @@ export const dynamic = "force-dynamic";
 
 export default function ProjectsPage() {
   return (
-    <Suspense fallback={<LoadingState label="Indexing project records…" />}>
+    <Suspense fallback={<LoadingState label="Loading projects…" />}>
       <ProjectsIndex />
     </Suspense>
   );

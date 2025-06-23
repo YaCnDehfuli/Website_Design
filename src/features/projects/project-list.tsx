@@ -20,8 +20,8 @@ export function ProjectList({ projects }: ProjectListProps) {
       <div className={styles.empty}>
         <span aria-hidden="true">[ ]</span>
         <p>
-          No published project records found.
-          <small>The index is connected and waiting for a release.</small>
+          No project records are available.
+          <small>Published projects will appear here when available.</small>
         </p>
       </div>
     );

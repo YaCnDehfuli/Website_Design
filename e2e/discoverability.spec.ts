@@ -12,10 +12,20 @@ test("publishes site metadata and a share image", async ({ page, request }) => {
     "content",
     /\/opengraph-image/,
   );
+  await expect(page.locator('meta[property="og:image:alt"]')).toHaveAttribute(
+    "content",
+    "Profile card for Yasin Dehfouli, Cybersecurity Engineer.",
+  );
+  await expect(page.locator('meta[property="og:image:width"]')).toHaveAttribute("content", "1200");
+  await expect(page.locator('meta[property="og:image:height"]')).toHaveAttribute("content", "630");
 
   const image = await request.get("/opengraph-image");
   expect(image.status()).toBe(200);
   expect(image.headers()["content-type"]).toContain("image/png");
+  const imageBody = await image.body();
+  expect(imageBody.byteLength).toBeGreaterThan(10_000);
+  expect(imageBody.readUInt32BE(16)).toBe(1200);
+  expect(imageBody.readUInt32BE(20)).toBe(630);
 });
 
 test("publishes robots and database-backed sitemap records", async ({ request }) => {

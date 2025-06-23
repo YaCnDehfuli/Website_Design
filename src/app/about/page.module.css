@@ -301,12 +301,6 @@
   color: var(--color-lime);
 }
 
-@keyframes blink {
-  50% {
-    opacity: 0;
-  }
-}
-
 @media (max-width: 48rem) {
   .profile,
   .educationGrid {

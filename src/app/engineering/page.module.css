@@ -44,7 +44,7 @@
   align-items: center;
   padding: clamp(2rem, 6vw, 5rem);
   gap: clamp(2rem, 6vw, 5rem);
-  grid-template-columns: auto 1fr;
+  grid-template-columns: minmax(20rem, 0.9fr) minmax(0, 1.1fr);
 }
 
 .threatBody > div:last-child {
@@ -61,37 +61,81 @@
   color: var(--color-muted);
 }
 
-.shield {
+.boundaryFigure {
   display: grid;
-  position: relative;
-  width: clamp(7rem, 16vw, 11rem);
-  aspect-ratio: 1;
-  place-items: center;
-  border: 1px solid var(--color-cyan);
-  transform: rotate(45deg);
-  background: rgb(99 242 208 / 6%);
-  box-shadow: 0 0 4rem rgb(99 242 208 / 10%);
-  font-size: clamp(2.4rem, 7vw, 4.5rem);
+  min-width: 0;
+  margin: 0;
+  gap: var(--space-3);
 }
 
-.shield::before {
-  position: absolute;
+.boundaryDiagram {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.externalNode,
+.dataZone {
+  display: grid;
+  min-width: 6.25rem;
+  justify-items: center;
+  padding: var(--space-4) var(--space-3);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: rgb(11 20 32 / 72%);
+  color: var(--color-cyan);
+  gap: var(--space-2);
+}
+
+.externalNode span,
+.dataZone span,
+.zoneLabel,
+.zoneNodes span {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+
+.applicationZone {
+  display: grid;
+  min-width: 9rem;
+  padding: var(--space-3);
   border: 1px dashed var(--color-violet);
-  content: "";
-  inset: 0.8rem;
+  border-radius: var(--radius-sm);
+  gap: var(--space-3);
 }
 
-.shield,
-.shield::before {
-  border-radius: 1rem;
+.zoneLabel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-violet);
+  gap: var(--space-2);
 }
 
-.shield {
-  line-height: 1;
+.zoneNodes {
+  display: grid;
+  gap: var(--space-1);
 }
 
-.shield > * {
-  transform: rotate(-45deg);
+.zoneNodes span {
+  padding: var(--space-2);
+  border: 1px solid var(--color-line);
+  background: rgb(6 11 18 / 82%);
+  color: var(--color-muted);
+}
+
+.flowArrow {
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+}
+
+.boundaryFigure figcaption {
+  color: var(--color-muted);
+  font-size: 0.7rem;
 }
 
 .threatChecks {
@@ -146,8 +190,8 @@
   margin-bottom: var(--space-6);
 }
 
-.principleMeta span {
-  font-size: 1.5rem;
+.principleMeta svg {
+  color: var(--color-violet);
 }
 
 .principleMeta code,
@@ -253,7 +297,8 @@
 
 @media (max-width: 52rem) {
   .intro,
-  .process {
+  .process,
+  .threatBody {
     grid-template-columns: 1fr;
   }
 
@@ -263,14 +308,23 @@
 }
 
 @media (max-width: 38rem) {
-  .threatBody,
   .principleGrid,
   .pipeline {
     grid-template-columns: 1fr;
   }
 
-  .shield {
-    margin-inline: auto;
+  .boundaryDiagram {
+    flex-direction: column;
+  }
+
+  .externalNode,
+  .applicationZone,
+  .dataZone {
+    width: 100%;
+  }
+
+  .flowArrow {
+    transform: rotate(90deg);
   }
 
   .threatChecks {

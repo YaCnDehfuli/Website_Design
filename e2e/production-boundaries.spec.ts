@@ -4,8 +4,9 @@ test("returns a useful not-found state", async ({ page }) => {
   const response = await page.goto("/unresolved-route");
 
   expect(response?.status()).toBe(404);
-  await expect(page.getByRole("heading", { level: 1, name: "Signal not found." })).toBeVisible();
-  await expect(page.getByRole("link", { name: /return_home/ })).toHaveAttribute("href", "/");
+  await expect(page.getByText("ENOENT / 404", { exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1, name: "Page not found." })).toBeVisible();
+  await expect(page.getByRole("link", { name: /Return home/ })).toHaveAttribute("href", "/");
 });
 
 test("sets the production security header baseline", async ({ request }) => {

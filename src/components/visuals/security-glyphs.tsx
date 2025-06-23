@@ -11,6 +11,8 @@ export const securityGlyphNames = [
   "cfg-path",
   "evidence-record",
   "trust-boundary",
+  "scope-boundary",
+  "failure-boundary",
   "honeypot-branch",
   "doi-record",
   "message-route",
@@ -203,6 +205,24 @@ function renderGlyph(name: SecurityGlyphName) {
           <rect x="8" y="5" width="20" height="22" rx="2" strokeDasharray="3 3" />
           <rect x="14" y="11" width="8" height="10" rx="1" />
           <path d="M2 11h6M2 21h6M5 8l3 3-3 3M5 18l3 3-3 3" />
+        </>
+      );
+    case "scope-boundary":
+      return (
+        <>
+          <rect x="4" y="4" width="24" height="24" rx="2" strokeDasharray="3 3" />
+          <rect x="10" y="10" width="12" height="12" rx="1" />
+          <path d="M4 16h6M7 13l3 3-3 3M28 16h-6M25 13l-3 3 3 3" />
+        </>
+      );
+    case "failure-boundary":
+      return (
+        <>
+          <path d="M3 8h8l5 8h5" />
+          <path d="M11 24l5-8" />
+          <rect x="21" y="12" width="7" height="8" rx="1" />
+          <path d="M24.5 8v4M24.5 20v4M20 8h9M20 24h9" strokeDasharray="2 2" />
+          <circle cx="5" cy="8" r="2" />
         </>
       );
     case "honeypot-branch":

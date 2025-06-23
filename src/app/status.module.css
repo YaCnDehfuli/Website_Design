@@ -14,6 +14,10 @@
   letter-spacing: 0.1em;
 }
 
+.statusGlyph {
+  color: var(--color-violet);
+}
+
 .page h1 {
   max-width: 13ch;
 }

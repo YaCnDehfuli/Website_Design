@@ -1,28 +1,28 @@
 export const engineeringPrinciples = [
   {
     code: "BOUNDARY_01",
-    emoji: "🛡️",
+    glyph: "trust-boundary",
     title: "Make trust boundaries explicit",
     description:
       "Validate data at system boundaries, minimize exposed surface area, and document the security assumptions relevant to each interface.",
   },
   {
     code: "SCOPE_02",
-    emoji: "✂️",
+    glyph: "scope-boundary",
     title: "Keep scope proportional to requirements",
     description:
       "Smaller systems are easier to reason about, test, secure, and change. Add dependencies or abstractions only when a concrete requirement justifies them.",
   },
   {
     code: "EVIDENCE_03",
-    emoji: "🔬",
+    glyph: "evidence-record",
     title: "Make correctness verifiable",
     description:
       "Use types, tests, logs, and reproducible commands to make expected behavior inspectable by someone other than the author.",
   },
   {
     code: "FAILURE_04",
-    emoji: "🧯",
+    glyph: "failure-boundary",
     title: "Design for failure",
     description:
       "Contain failures, return useful errors, and preserve a recovery path. Error handling is part of the interface.",

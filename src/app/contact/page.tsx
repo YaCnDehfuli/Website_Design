@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SecurityGlyph } from "@/components/visuals/security-glyphs";
 import { profile } from "@/content/profile";
 import { ContactForm } from "@/features/contact/contact-form";
 import styles from "./page.module.css";
@@ -21,61 +22,59 @@ export default function ContactPage() {
       </header>
 
       <section className={styles.connection} aria-labelledby="connection-title">
-        <div className={styles.terminal}>
-          <div className={styles.terminalBar}>
-            <span className={styles.dots} aria-hidden="true">
-              <i />
-              <i />
-              <i />
-            </span>
-            <span>secure-ish-shell</span>
-            <span>80×24</span>
+        <figure className={styles.routeMap}>
+          <div className={styles.routeMapBar}>
+            <span>CONTACT_FLOW</span>
+            <span>FORM → SERVER ACTION</span>
           </div>
-          <div className={styles.terminalBody}>
-            <p>
-              <span>$</span> connect --to yasin
-            </p>
-            <div className={styles.output}>
-              <p>
-                <span>✓</span> identity: {profile.name}
-              </p>
-              <p>
-                <span>✓</span> channel: contact form
-              </p>
-              <p>
-                <span>✓</span> status: ready to receive
-              </p>
+          <div className={styles.routeDiagram} aria-hidden="true">
+            <div className={styles.primaryRoute}>
+              <div className={styles.routeNode}>
+                <SecurityGlyph name="message-route" width="30" height="30" />
+                <span>MESSAGE</span>
+              </div>
+              <span className={styles.routeArrow}>→</span>
+              <div className={styles.routeNode}>
+                <SecurityGlyph name="rule-match" width="30" height="30" />
+                <span>VALIDATE</span>
+              </div>
+              <span className={styles.routeArrow}>→</span>
+              <div className={styles.routeNode}>
+                <SecurityGlyph name="evidence-record" width="30" height="30" />
+                <span>POSTGRESQL</span>
+              </div>
+              <span className={styles.routeArrow}>→</span>
+              <div className={styles.routeNode}>
+                <SecurityGlyph name="message-route" width="30" height="30" />
+                <span>ACKNOWLEDGE</span>
+              </div>
             </div>
-            <p className={styles.prompt}>
-              <span>$</span> compose_message <i aria-hidden="true" />
-            </p>
+            <div className={styles.dropRoute}>
+              <span>└─</span>
+              <SecurityGlyph name="honeypot-branch" width="26" height="26" />
+              <span>HONEYPOT / DROP</span>
+            </div>
           </div>
-          <div className={styles.terminalActions}>
-            <a className={styles.emailAction} href="#message-title">
-              <span aria-hidden="true">↓</span> open_message_buffer
+          <figcaption>
+            Contact messages are validated on the server. Accepted messages are stored in
+            PostgreSQL; automated submissions may be discarded without retaining their payload.
+          </figcaption>
+          <div className={styles.routeActions}>
+            <a className={styles.messageAction} href="#message-title">
+              Start a message
             </a>
-            <a
-              className={styles.githubAction}
-              href={profile.githubUrl}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <span aria-hidden="true">↗</span> inspect_github
+            <a href={profile.githubUrl} target="_blank" rel="noreferrer">
+              View GitHub <span aria-hidden="true">↗</span>
             </a>
-            <a
-              className={styles.githubAction}
-              href={profile.linkedInUrl}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <span aria-hidden="true">↗</span> open_linkedin
+            <a href={profile.linkedInUrl} target="_blank" rel="noreferrer">
+              View LinkedIn <span aria-hidden="true">↗</span>
             </a>
           </div>
-        </div>
+        </figure>
 
         <aside className={styles.routingGuide}>
           <div>
-            <p className="section-kicker">packet guide</p>
+            <p className="section-kicker">message checklist</p>
             <h2 id="connection-title">A useful first message</h2>
           </div>
           <ul>
@@ -113,21 +112,27 @@ export default function ContactPage() {
         </div>
         <dl>
           <div>
-            <dt>▶ Form</dt>
+            <dt>
+              <SecurityGlyph name="message-route" width="20" height="20" /> Form
+            </dt>
             <dd>
-              <a href="#message-title">Message buffer</a>
+              <a href="#message-title">Send a message</a>
               <span>primary contact route</span>
             </dd>
           </div>
           <div>
-            <dt>⌘ GitHub</dt>
+            <dt>
+              <SecurityGlyph name="evidence-record" width="20" height="20" /> GitHub
+            </dt>
             <dd>
               <a href={profile.githubUrl}>@YaCnDehfuli</a>
               <span>source · issues · technical context</span>
             </dd>
           </div>
           <div>
-            <dt>in LinkedIn</dt>
+            <dt>
+              <SecurityGlyph name="endpoint-identity" width="20" height="20" /> LinkedIn
+            </dt>
             <dd>
               <a href={profile.linkedInUrl}>Yasin Dehfouli</a>
               <span>professional profile · research context</span>
@@ -135,15 +140,6 @@ export default function ContactPage() {
           </div>
         </dl>
       </section>
-
-      <aside className={styles.serviceStatus} aria-label="Contact form status">
-        <span className={styles.statusLight} aria-hidden="true" />
-        <p>
-          <code>contact_form.service</code>
-          <small>database persistence active · no public email exposed</small>
-        </p>
-        <span>ONLINE</span>
-      </aside>
     </div>
   );
 }

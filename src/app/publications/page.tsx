@@ -14,7 +14,7 @@ export const dynamic = "force-dynamic";
 
 export default function PublicationsPage() {
   return (
-    <Suspense fallback={<LoadingState label="Resolving publication records…" />}>
+    <Suspense fallback={<LoadingState label="Loading publications…" />}>
       <PublicationsIndex />
     </Suspense>
   );
@@ -36,8 +36,8 @@ async function PublicationsIndex() {
         </p>
       </header>
       <div className={styles.archiveBar}>
-        <span>ARCHIVE.online</span>
-        <span>{String(publications.length).padStart(2, "0")} readable records</span>
+        <span>PUBLICATION_INDEX</span>
+        <span>{String(publications.length).padStart(2, "0")} published records</span>
       </div>
       <PublicationList publications={publications} />
     </div>

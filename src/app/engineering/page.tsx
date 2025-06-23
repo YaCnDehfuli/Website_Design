@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SecurityGlyph } from "@/components/visuals/security-glyphs";
 import { buildLoop, engineeringPrinciples, verificationLayers } from "@/content/engineering";
 import styles from "./page.module.css";
 
@@ -28,9 +29,35 @@ export default function EngineeringPage() {
           <span>read-only</span>
         </div>
         <div className={styles.threatBody}>
-          <div className={styles.shield} aria-hidden="true">
-            <span>🛡️</span>
-          </div>
+          <figure className={styles.boundaryFigure}>
+            <div className={styles.boundaryDiagram} aria-hidden="true">
+              <div className={styles.externalNode}>
+                <SecurityGlyph name="message-route" width="28" height="28" />
+                <span>PUBLIC CLIENT</span>
+              </div>
+              <span className={styles.flowArrow}>→</span>
+              <div className={styles.applicationZone}>
+                <div className={styles.zoneLabel}>
+                  <SecurityGlyph name="trust-boundary" width="22" height="22" />
+                  <span>APPLICATION</span>
+                </div>
+                <div className={styles.zoneNodes}>
+                  <span>NEXT.JS ROUTES</span>
+                  <span>SERVER ACTION</span>
+                  <span>ZOD VALIDATION</span>
+                </div>
+              </div>
+              <span className={styles.flowArrow}>→</span>
+              <div className={styles.dataZone}>
+                <SecurityGlyph name="evidence-record" width="28" height="28" />
+                <span>POSTGRESQL</span>
+              </div>
+            </div>
+            <figcaption>
+              Trust-boundary diagram for this site: public clients reach Next.js routes; contact
+              input crosses server validation before database persistence.
+            </figcaption>
+          </figure>
           <div>
             <p className="section-kicker">default posture</p>
             <h2 id="threat-title">Threat modeling starts with assets and boundaries.</h2>
@@ -65,7 +92,7 @@ export default function EngineeringPage() {
           {engineeringPrinciples.map((principle) => (
             <article key={principle.code}>
               <div className={styles.principleMeta}>
-                <span aria-hidden="true">{principle.emoji}</span>
+                <SecurityGlyph name={principle.glyph} width="28" height="28" />
                 <code>{principle.code}</code>
               </div>
               <h3>{principle.title}</h3>

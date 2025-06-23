@@ -15,16 +15,15 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
 
   return (
     <div className={styles.page}>
-      <p className={styles.code}>STATUS / request failed safely</p>
-      <h1>The signal was interrupted.</h1>
+      <p className={styles.code}>REQUEST_ERROR</p>
+      <h1>Something went wrong.</h1>
       <p className={styles.description}>
-        The requested data could not be loaded. No submission is required; retry the request or
-        return later.
+        The requested page could not be loaded. Try again, or return later.
       </p>
       <button type="button" onClick={reset}>
-        retry_request
+        Try again
       </button>
-      {error.digest && <p className={styles.digest}>reference: {error.digest}</p>}
+      {error.digest && <p className={styles.digest}>Reference: {error.digest}</p>}
     </div>
   );
 }

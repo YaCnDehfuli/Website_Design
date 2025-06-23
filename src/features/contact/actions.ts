@@ -25,7 +25,7 @@ export async function submitContactMessage(
 
   // The hidden field gives basic bots a successful-looking no-op without retaining their payload.
   if (result.data.website) {
-    return { status: "success", message: "Message received." };
+    return { status: "success", message: "Message received. Thank you for reaching out." };
   }
 
   try {
@@ -37,14 +37,14 @@ export async function submitContactMessage(
 
     return {
       status: "success",
-      message: "Message stored. Thank you for reaching out.",
+      message: "Message received. Thank you for reaching out.",
     };
   } catch (error) {
     console.error("Contact message persistence failed", error);
 
     return {
       status: "error",
-      message: "The message could not be stored. Please use the email fallback.",
+      message: "The message could not be sent. Please try again later.",
     };
   }
 }

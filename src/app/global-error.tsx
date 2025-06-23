@@ -17,10 +17,10 @@ export default function GlobalError({ reset }: GlobalErrorProps) {
         }}
       >
         <main>
-          <p style={{ color: "#63f2d0", fontFamily: "monospace" }}>STATUS / application boundary</p>
-          <h1>Unable to render the site.</h1>
+          <p style={{ color: "#63f2d0", fontFamily: "monospace" }}>APPLICATION_ERROR</p>
+          <h1>The site could not be displayed.</h1>
           <p style={{ color: "#91a5a3", maxWidth: "42rem" }}>
-            A non-recoverable rendering error occurred. Retry once; if it persists, return later.
+            An application error prevented this page from loading. Try again, or return later.
           </p>
           <button
             type="button"
@@ -34,7 +34,7 @@ export default function GlobalError({ reset }: GlobalErrorProps) {
               padding: ".7rem .9rem",
             }}
           >
-            retry_request
+            Try again
           </button>
         </main>
       </body>

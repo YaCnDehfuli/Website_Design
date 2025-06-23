@@ -36,7 +36,14 @@ export const metadata: Metadata = {
     siteName: site.name,
     title: site.title,
     description: site.description,
-    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: site.title }],
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: `Profile card for ${profile.name}, ${profile.professionalHeadline}.`,
+      },
+    ],
   },
   publisher: profile.name,
   twitter: {

@@ -20,90 +20,96 @@
   grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr);
 }
 
-.terminal,
+.routeMap,
 .routingGuide {
   border: 1px solid var(--color-line);
   border-radius: var(--radius-md);
   background: rgb(3 7 12 / 84%);
 }
 
-.terminal {
+.routeMap {
   overflow: hidden;
+  margin: 0;
   box-shadow: 0 2rem 6rem rgb(0 0 0 / 30%);
 }
 
-.terminalBar {
-  display: grid;
+.routeMapBar {
+  display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: var(--space-3) var(--space-4);
   border-bottom: 1px solid var(--color-line);
   color: var(--color-muted);
   font-family: var(--font-mono);
   font-size: 0.62rem;
-  grid-template-columns: 1fr auto 1fr;
+  letter-spacing: 0.06em;
 }
 
-.terminalBar > span:last-child {
-  justify-self: end;
+.routeMapBar span:first-child {
+  color: var(--color-violet);
 }
 
-.dots {
-  display: flex;
-  gap: 0.35rem;
-}
-
-.dots i {
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
-  background: var(--color-cyan);
-}
-
-.dots i:nth-child(2) {
-  background: var(--color-amber);
-}
-
-.dots i:nth-child(3) {
-  background: var(--color-violet);
-}
-
-.terminalBody {
-  min-height: 20rem;
-  padding: clamp(1.5rem, 5vw, 3.5rem);
-  font-family: var(--font-mono);
-  font-size: clamp(0.75rem, 2vw, 0.9rem);
-}
-
-.terminalBody > p span {
-  color: var(--color-lime);
-}
-
-.output {
+.routeDiagram {
   display: grid;
-  margin: var(--space-6) 0;
-  gap: var(--space-2);
-  color: var(--color-muted);
+  min-height: 20rem;
+  align-content: center;
+  padding: clamp(1.5rem, 5vw, 3.5rem);
+  gap: var(--space-6);
 }
 
-.output span {
-  margin-right: var(--space-2);
-  color: var(--color-cyan);
-}
-
-.prompt {
-  display: flex;
+.primaryRoute {
+  display: grid;
   align-items: center;
   gap: var(--space-2);
+  grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
 }
 
-.prompt i {
-  width: 0.55rem;
-  height: 1.05rem;
-  background: var(--color-lime);
-  animation: cursor 1s steps(1) infinite;
+.routeNode {
+  display: grid;
+  min-width: 0;
+  min-height: 7.5rem;
+  align-content: center;
+  justify-items: center;
+  padding: var(--space-3);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: rgb(11 20 32 / 66%);
+  color: var(--color-cyan);
+  gap: var(--space-3);
 }
 
-.terminalActions {
+.routeNode span,
+.dropRoute {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-align: center;
+}
+
+.routeArrow {
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+}
+
+.dropRoute {
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  padding: var(--space-3) var(--space-4);
+  border: 1px dashed var(--color-amber);
+  border-radius: var(--radius-sm);
+  color: var(--color-amber);
+  gap: var(--space-2);
+}
+
+.routeMap figcaption {
+  padding: 0 clamp(1.5rem, 5vw, 3.5rem) var(--space-5);
+  color: var(--color-muted);
+  font-size: 0.78rem;
+}
+
+.routeActions {
   display: flex;
   flex-wrap: wrap;
   padding: var(--space-4);
@@ -111,7 +117,7 @@
   gap: var(--space-3);
 }
 
-.terminalActions a {
+.routeActions a {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
@@ -124,12 +130,12 @@
   text-decoration: none;
 }
 
-.emailAction {
+.messageAction {
   background: var(--color-cyan);
   color: var(--color-bg-deep);
 }
 
-.githubAction:hover {
+.routeActions a:not(.messageAction):hover {
   border-color: var(--color-cyan);
   color: var(--color-cyan);
 }
@@ -205,7 +211,15 @@
 }
 
 .channels dt {
+  display: flex;
+  align-items: center;
+  color: var(--color-text);
+  gap: var(--space-2);
   font-weight: 700;
+}
+
+.channels dt svg {
+  color: var(--color-violet);
 }
 
 .channels dd {
@@ -225,52 +239,6 @@
   font-size: 0.78rem;
 }
 
-.serviceStatus {
-  display: grid;
-  align-items: center;
-  padding: var(--space-4);
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-sm);
-  background: rgb(11 20 32 / 65%);
-  gap: var(--space-3);
-  grid-template-columns: auto 1fr auto;
-}
-
-.statusLight {
-  width: 0.6rem;
-  height: 0.6rem;
-  border-radius: 50%;
-  background: var(--color-lime);
-  box-shadow: 0 0 0.8rem var(--color-lime);
-}
-
-.serviceStatus p {
-  display: grid;
-}
-
-.serviceStatus code {
-  color: var(--color-text);
-  font-size: 0.75rem;
-}
-
-.serviceStatus small,
-.serviceStatus > span:last-child {
-  color: var(--color-muted);
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-}
-
-.serviceStatus > span:last-child {
-  color: var(--color-lime);
-  letter-spacing: 0.1em;
-}
-
-@keyframes cursor {
-  50% {
-    opacity: 0;
-  }
-}
-
 @media (max-width: 48rem) {
   .connection,
   .channels {
@@ -279,23 +247,16 @@
 }
 
 @media (max-width: 32rem) {
-  .terminalBar {
-    grid-template-columns: 1fr auto;
+  .primaryRoute {
+    grid-template-columns: 1fr;
   }
 
-  .terminalBar > span:last-child {
-    display: none;
+  .routeArrow {
+    transform: rotate(90deg);
+    justify-self: center;
   }
 
   .channels dl > div {
     grid-template-columns: 1fr;
-  }
-
-  .serviceStatus {
-    grid-template-columns: auto 1fr;
-  }
-
-  .serviceStatus > span:last-child {
-    display: none;
   }
 }

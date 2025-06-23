@@ -21,7 +21,7 @@ export const dynamic = "force-dynamic";
 
 export default function Home() {
   return (
-    <Suspense fallback={<LoadingState label="Tracing the portfolio…" />}>
+    <Suspense fallback={<LoadingState label="Loading selected work…" />}>
       <HomeContent />
     </Suspense>
   );
@@ -37,7 +37,7 @@ async function HomeContent() {
     <div className={styles.page}>
       <section className={styles.hero} aria-labelledby="hero-title">
         <div className={styles.heroCopy}>
-          <p className="section-kicker">root access / granted</p>
+          <p className="section-kicker">[59][44] / public profile</p>
           <h1 id="hero-title">
             Yasin <span>Dehfouli.</span>
           </h1>
@@ -45,7 +45,7 @@ async function HomeContent() {
           <p className="lede">{profile.introduction}</p>
           <div className={styles.actions}>
             <Link className={styles.primaryAction} href="/projects">
-              <span aria-hidden="true">●</span> explore_projects
+              Explore projects
             </Link>
             <a
               className={styles.secondaryAction}
@@ -102,7 +102,7 @@ async function HomeContent() {
                   width="28"
                   height="28"
                 />
-                <span>module_{String(index + 1).padStart(2, "0")}</span>
+                <span>practice_{String(index + 1).padStart(2, "0")}</span>
               </div>
               <h3>{area.title}</h3>
               <p>{area.description}</p>
@@ -124,7 +124,7 @@ async function HomeContent() {
         </div>
         <ProjectList projects={featuredProjects} />
         <Link className={styles.sectionLink} href="/projects">
-          inspect_all_projects <span aria-hidden="true">↗</span>
+          View all projects <span aria-hidden="true">↗</span>
         </Link>
       </section>
 
@@ -141,7 +141,7 @@ async function HomeContent() {
         </div>
         <PublicationList publications={recentPublications} />
         <Link className={styles.sectionLink} href="/publications">
-          browse_publication_archive <span aria-hidden="true">↗</span>
+          View all publications <span aria-hidden="true">↗</span>
         </Link>
       </section>
 
@@ -193,15 +193,15 @@ async function HomeContent() {
           </p>
         </div>
         <Link href="/contact">
-          open_secure_channel <span aria-hidden="true">↗</span>
+          Contact <span aria-hidden="true">↗</span>
         </Link>
       </section>
 
-      <aside className={styles.protocol} aria-label="Current working protocol">
+      <aside className={styles.protocol} aria-label="Engineering method">
         <div className={styles.protocolTitle}>
-          <span aria-hidden="true">⌁</span>
+          <SecurityGlyph name="trust-boundary" width="28" height="28" />
           <p>
-            CURRENT_PROTOCOL <small>v1.0</small>
+            ENGINEERING_METHOD <small>documented workflow</small>
           </p>
         </div>
         <ol>

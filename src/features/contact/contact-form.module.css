@@ -86,12 +86,6 @@
   font-weight: 700;
 }
 
-.field label::before {
-  margin-right: var(--space-2);
-  color: var(--color-cyan);
-  content: ">";
-}
-
 .field input,
 .field textarea {
   width: 100%;
@@ -118,7 +112,7 @@
 
 .field input[aria-invalid="true"],
 .field textarea[aria-invalid="true"] {
-  border-color: var(--color-amber);
+  border-color: var(--color-error);
 }
 
 .hint,
@@ -132,7 +126,7 @@
 }
 
 .error {
-  color: var(--color-amber);
+  color: var(--color-error);
 }
 
 .honeypot {
@@ -179,7 +173,7 @@
 }
 
 .formStatus[data-status="error"] {
-  color: var(--color-amber);
+  color: var(--color-error);
 }
 
 @media (max-width: 52rem) {
